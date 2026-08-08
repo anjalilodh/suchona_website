@@ -1,0 +1,7 @@
+# Claude Code / agent tooling (local dev environment, not site source)
+.claude/
+.agents/
+skills-lock.json
+
+# OS
+.DS_Store

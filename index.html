@@ -4,37 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | Suchona</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Suchona — Bengali Association of Iowa and Illinois.">
+  <link rel="stylesheet" href="css/hero-base.css">
+  <link rel="stylesheet" href="css/hero-v2.css">
 </head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html" class="site-name">Suchona</a>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <span>Events</span>
-          <ul class="dropdown-menu">
-            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
-            <li><a href="events.html">Events</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <span>About Us</span>
-          <ul class="dropdown-menu">
-            <li><a href="our-story.html">Our Story</a></li>
-            <li><a href="who-we-are.html">Who We Are</a></li>
-          </ul>
-        </li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="magazine.html">Magazine</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html" class="btn-donate">Donate</a></li>
-      </ul>
-    </nav>
+<body class="variant-2">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="index.html" class="wordmark">Suchona</a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav-links">
+          <li class="has-dropdown">
+            <button class="nav-link" aria-expanded="false">Events <span class="chev" aria-hidden="true"></span></button>
+            <div class="dropdown-collapse">
+              <ul class="dropdown-menu">
+                <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+                <li><a href="events.html">Events</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="has-dropdown">
+            <button class="nav-link" aria-expanded="false">About Us <span class="chev" aria-hidden="true"></span></button>
+            <div class="dropdown-collapse">
+              <ul class="dropdown-menu">
+                <li><a href="our-story.html">Our Story</a></li>
+                <li><a href="who-we-are.html">Who We Are</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li><a class="nav-link" href="magazine.html">Magazine</a></li>
+          <li><a class="nav-link" href="contact.html">Contact</a></li>
+          <li><a class="nav-link nav-cta" href="donate.html">Donate</a></li>
+        </ul>
+      </nav>
+      <div class="nav-scrim"></div>
+    </div>
   </header>
 
-  <main>
-    <h1>Home</h1>
+  <main id="main">
+    <section class="hero" aria-label="Welcome">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1 class="hero-headline">
+            <span class="line-welcome">Welcome to</span>
+            <span class="line-name">Suchona</span>
+          </h1>
+          <p class="hero-subtitle">Bengali Association of Iowa and Illinois</p>
+        </div>
+
+        <div class="hero-stage">
+          <img
+            class="hero-illustration"
+            src="images/hero/hero-background.png"
+            alt="Illustrated depiction of the goddess Durga in traditional Bengali iconography, with a golden mandala halo and flowing paisley ornament."
+            width="1660"
+            height="948"
+          >
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -51,6 +88,6 @@
     </section>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/hero.js"></script>
 </body>
 </html>
