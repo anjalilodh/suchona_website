@@ -1,97 +1,398 @@
-/* ==========================================================================
-   Suchona hero — built directly from the approved reference illustration.
-   Nav styling/behavior is untouched (hero-base.css). Everything below is
-   the hero only: the illustration is the art direction: text is placed
-   into the space the illustration already reserves for it.
-   ========================================================================== */
+/* Definitive Suchona hero — built around the approved 1672 × 941 artwork. */
 
 @font-face {
-  font-family: "Bespoke Slab";
-  src: url("../fonts/BespokeSlab-Bold.woff2") format("woff2");
-  font-weight: 700;
+  font-family: 'Anton';
+  src: url('../fonts/Anton-Regular.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "General Sans";
-  src: url("../fonts/GeneralSans-Medium.woff2") format("woff2");
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "General Sans";
-  src: url("../fonts/GeneralSans-Semibold.woff2") format("woff2");
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-display: "Bespoke Slab", "Iowan Old Style", Georgia, serif;
-  --font-sans: "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --hero-red: #922b19;
+  --hero-red-dark: #7b2617;
+  --hero-gold: #d89437;
+  --hero-cream: #f2d9ad;
+  --hero-cream-light: #f8e4ba;
+  --hero-sky: #fae2b7;
+  --hero-forest: #2e4f3b;
+  --hero-font: 'Anton', 'Arial Narrow', sans-serif;
+  --hero-ui-font: 'Montserrat', Arial, sans-serif;
 }
 
 body {
-  background-color: var(--cream);
+  background: var(--hero-cream);
 }
 
-/* ---- nav: red carries the wordmark and primary action ---- */
-
-.wordmark {
-  color: var(--oxblood);
-  font-family: var(--font-display);
-  font-weight: 700;
+.site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 40;
+  height: 6.65rem;
+  padding: 0 5.125rem;
 }
 
-.nav-link:hover,
-.nav-link:focus-visible {
-  color: var(--oxblood);
+.nav-inner {
+  position: relative;
+  max-width: none;
+  height: 100%;
 }
 
-.nav-cta {
-  background: var(--oxblood);
-  border-color: var(--oxblood);
-  color: var(--cream);
+.nav-logo-space {
+  position: absolute;
+  top: 1.75rem;
+  left: 0;
+  width: 11rem;
+  height: 3.5rem;
+}
+
+.primary-nav {
+  position: absolute;
+  top: 2.15rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links {
+  gap: clamp(2.75rem, 3.5vw, 4.6rem);
+  font-family: var(--hero-ui-font);
+  font-size: 0.96rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.105em;
+}
+
+.nav-link {
+  color: var(--hero-forest);
+  font-family: inherit;
+  font-weight: 500;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  bottom: -0.28rem;
+  height: 1px;
+  background: var(--hero-forest);
+}
+
+.has-dropdown .nav-link .chev {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-left: 0.45rem;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-0.25rem) rotate(45deg);
+}
+
+.nav-donate-item {
+  display: none;
+}
+
+.nav-donate-desktop {
+  position: absolute;
+  top: 0.85rem;
+  right: 4.75rem;
+  z-index: 2;
+  width: 12.4rem;
+  min-height: 3.4rem;
+  display: inline-flex;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--hero-cream-light);
+  font-family: var(--hero-ui-font);
+  font-size: 1.08rem;
   font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.09em;
+  text-decoration: none;
+}
+
+.donate-plaque {
+  position: relative;
+  width: 100%;
+  min-height: 3.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  border: 2px solid var(--hero-cream-light);
+  background: var(--hero-red);
+  box-shadow:
+    0 0 0 2px var(--hero-gold),
+    0 0 0 3px var(--hero-cream-light);
+  clip-path: polygon(
+    6% 0,
+    94% 0,
+    97% 12%,
+    97% 28%,
+    100% 36%,
+    100% 64%,
+    97% 72%,
+    97% 88%,
+    94% 100%,
+    6% 100%,
+    3% 88%,
+    3% 72%,
+    0 64%,
+    0 36%,
+    3% 28%,
+    3% 12%
+  );
+}
+
+.donate-plaque::before {
+  content: '';
+  position: absolute;
+  inset: 0.35rem 0.55rem;
+  border: 1px solid var(--hero-gold);
+  clip-path: polygon(
+    6% 0,
+    94% 0,
+    100% 18%,
+    100% 82%,
+    94% 100%,
+    6% 100%,
+    0 82%,
+    0 18%
+  );
+  pointer-events: none;
+}
+
+.donate-plaque b {
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 0.7;
+}
+
+.donate-ornament {
+  position: absolute;
+  top: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 1.5px solid var(--hero-gold);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.donate-ornament::before,
+.donate-ornament::after {
+  content: '';
+  position: absolute;
+  width: 0.18rem;
+  height: 0.18rem;
+  border: 1px solid var(--hero-gold);
+}
+
+.donate-ornament-left {
+  left: -0.95rem;
+}
+.donate-ornament-right {
+  right: -0.95rem;
+}
+.donate-ornament::before {
+  top: -0.36rem;
+  left: -0.36rem;
+}
+.donate-ornament::after {
+  right: -0.36rem;
+  bottom: -0.36rem;
+}
+
+.nav-cta::after {
+  display: none;
 }
 
 .nav-cta:hover,
 .nav-cta:focus-visible {
-  background: var(--mustard);
-  border-color: var(--mustard);
-  color: var(--forest-ink);
+  background: transparent;
+  color: #fff0cb;
 }
 
-.dropdown-menu a:hover,
-.dropdown-menu a:focus-visible {
-  background: rgba(217, 164, 65, 0.22);
-  color: var(--oxblood);
+.nav-cta:hover .donate-plaque,
+.nav-cta:focus-visible .donate-plaque {
+  background: var(--hero-red-dark);
 }
 
-/* ==========================================================================
-   Hero
-   ========================================================================== */
+.nav-rule {
+  position: absolute;
+  left: -2.55rem;
+  right: -2.55rem;
+  bottom: -1.43rem;
+  display: grid;
+  grid-template-columns: 1rem 1fr 1.15rem 3.7rem 1.15rem 1fr 1rem;
+  align-items: center;
+  color: var(--hero-gold);
+}
+
+.rule-line {
+  height: 1px;
+  background: currentColor;
+}
+
+.rule-dots {
+  position: relative;
+  height: 0.3rem;
+}
+
+.rule-dots::before,
+.rule-dots::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0.22rem;
+  height: 0.22rem;
+  background: currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.rule-dots::before {
+  left: 0.18rem;
+}
+
+.rule-dots::after {
+  right: 0.18rem;
+}
+
+.rule-lotus {
+  width: 3.7rem;
+  height: 3rem;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+}
+
+.rule-end {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.rule-end-right {
+  justify-self: end;
+}
+
+.dropdown-menu {
+  background: var(--hero-cream);
+  border-color: rgba(141, 41, 24, 0.24);
+}
+
+.dropdown-menu a {
+  color: var(--hero-forest);
+  font-family: var(--hero-ui-font);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
 
 .hero {
-  padding: clamp(1rem, 3vh, 2.5rem) 0 0;
-  background-color: #e9d4bb;
+  position: relative;
+  min-height: 100svh;
+  padding: 0;
+  overflow: hidden;
+  background: var(--hero-cream);
 }
 
-.hero-inner {
-  position: relative;
+.hero-inner,
+.hero-stage {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-stage {
+  background: var(--hero-sky);
+}
+
+/*
+ * hero-artwork-final.png is immutable. These two code-native sky masks hide only
+ * its baked interface regions so the approved illustration is never edited.
+ */
+.hero-stage::before,
+.hero-stage::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-stage::before {
+  inset: 0 0 auto;
+  height: 15.8%;
+  background: linear-gradient(
+    90deg,
+    #f9e1b9 0%,
+    var(--hero-sky) 48%,
+    #f9dfb5 100%
+  );
+  filter: blur(8px);
+  transform: scale(1.012);
+}
+
+.hero-stage::after {
+  top: 27.8%;
+  left: 7.25%;
+  width: 40.65%;
+  height: 36.7%;
+  background: radial-gradient(
+    circle at 62% 112%,
+    #f7c875 0%,
+    #f8d79a 36%,
+    #fae2b7 68%,
+    #fbe7c5 100%
+  );
+  filter: blur(12px);
+  transform: scale(1.018);
+}
+
+.hero-art-mask-rule {
+  display: none;
+}
+
+.hero-illustration {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  /* A restrained 20%-toward-reference grade: slightly lighter, warmer reds
+     and greens without flattening the illustration into a yellow wash. */
+  filter: brightness(1.025) saturate(0.965) sepia(0.035);
 }
 
 .hero-copy {
-  padding: 0 var(--page-pad);
+  position: absolute;
+  top: 32.45%;
+  left: 12.65%;
+  z-index: 3;
+  padding: 0;
   opacity: 0;
   transform: translateY(0.6em);
 }
 
 .reveal-ready .hero-copy {
-  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
 }
 
 .reveal-in .hero-copy {
@@ -99,79 +400,203 @@ body {
   transform: translateY(0);
 }
 
-.hero-headline {
-  margin: 0;
-  font-family: "Fraunces", "Iowan Old Style", Georgia, serif;
-  line-height: 0.96;
-  letter-spacing: -0.015em;
+.hero-lockup {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.hero-headline .line-welcome {
-  display: block;
-  font-size: clamp(1.3rem, 0.95rem + 1.3vw, 2rem);
-  font-weight: 500;
-  font-variation-settings: "opsz" 30;
-  color: var(--forest);
+.hero-headline {
+  margin: 0;
+  color: var(--hero-red);
+  font-family: var(--hero-font);
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
 }
 
 .hero-headline .line-name {
   display: block;
-  font-size: clamp(4.5rem, 1.6rem + 9.5vw, 9.5rem);
-  font-weight: 700;
-  font-variation-settings: "opsz" 30;
-  color: var(--forest);
+  margin-top: 0.12em;
+  margin-bottom: 1rem;
+  color: var(--hero-red);
+  font-family: var(--hero-font);
+  font-size: 10rem;
+  font-weight: 400;
+  line-height: 0.96;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  transform: scaleX(0.92) scaleY(1.1);
+  transform-origin: top center;
 }
 
 .hero-subtitle {
-  margin: 0.9rem 0 0;
-  font-family: "Fraunces", "Iowan Old Style", Georgia, serif;
+  margin: 2rem 0 0;
+  color: var(--hero-forest);
+  font-family: var(--hero-ui-font);
+  font-size: 0.92rem;
   font-weight: 500;
-  font-variation-settings: "opsz" 20;
-  color: var(--forest);
-  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.2rem);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-align: left;
 }
 
-/* ---- illustration ---- */
-
-.hero-stage {
-  position: relative;
-  margin-top: clamp(0.5rem, 2vh, 1.5rem);
+.subtitle-rule {
+  width: 25.5rem;
+  margin: 0.88rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr 0.31rem 0.63rem 0.31rem 1fr;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--hero-gold);
 }
 
-.hero-illustration {
-  display: block;
-  width: 100%;
-  height: auto;
+.subtitle-rule span {
+  height: 1px;
+  background: currentColor;
 }
 
-/* Mobile / tablet: stacked. Copy sits in normal flow above the full-width
-   illustration, which keeps the whole scene (Durga + the paisley border)
-   intact and legible instead of shrinking it under overlaid text. */
-@media (max-width: 899px) {
-  .hero-copy {
-    text-align: left;
+.subtitle-rule i {
+  width: 0.25rem;
+  height: 0.25rem;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.subtitle-rule b {
+  width: 0.57rem;
+  height: 0.57rem;
+  border: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+footer {
+  display: none;
+}
+
+@media (max-width: 1500px) and (min-width: 941px) {
+  .site-header {
+    padding-inline: 3.5rem;
+  }
+
+  .primary-nav {
+    left: 50%;
+  }
+
+  .nav-links {
+    gap: clamp(2rem, 3.1vw, 3rem);
+    font-size: clamp(0.78rem, 1vw, 0.94rem);
+  }
+
+  .nav-donate-desktop {
+    right: 1.25rem;
+  }
+
+  .hero-headline .line-name {
+    font-size: 8.95vw;
   }
 }
 
-/* Desktop: the illustration already reserves empty space on its left for
-   copy, so lay the headline directly into that space instead of stacking. */
-@media (min-width: 900px) {
-  .hero-copy {
+@media (max-width: 1120px) {
+  .site-header {
+    height: var(--nav-h);
+    padding: 0 var(--page-pad);
+  }
+
+  .nav-toggle {
+    display: flex;
     position: absolute;
-    top: 22%;
-    left: 0;
-    width: min(40%, 34rem);
-    padding: 0 0 0 var(--page-pad);
-    z-index: 2;
+    top: 0.9rem;
+    right: 0;
+  }
+
+  .primary-nav {
+    top: 0;
+    left: auto;
+    transform: translateX(100%);
+  }
+
+  .primary-nav.is-open {
+    transform: translateX(0);
+  }
+
+  .nav-links {
+    font-family: var(--hero-ui-font);
+    font-size: 1.1rem;
+  }
+
+  .nav-donate-item {
+    display: block;
+  }
+
+  .nav-donate-desktop,
+  .nav-rule {
+    display: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    padding-top: calc(var(--nav-h) + 2rem);
+  }
+
+  .hero-copy {
+    position: relative;
+    inset: auto;
+    order: 1;
+    padding: 0 var(--page-pad);
+  }
+
+  .hero-lockup {
+    margin-inline: auto;
+  }
+
+  .hero-headline .line-name {
+    font-size: clamp(4.1rem, 17.5vw, 7rem);
+  }
+
+  .hero-subtitle {
+    margin-left: 0;
+    font-size: clamp(0.8rem, 2.45vw, 1.08rem);
+    text-align: center;
+  }
+
+  .subtitle-rule {
+    width: 100%;
+    margin-left: 0;
   }
 
   .hero-stage {
+    position: relative;
+    inset: auto;
+    order: 2;
+    flex: 1;
+    min-height: 53svh;
     margin-top: 0;
+    overflow: hidden;
+  }
+
+  .hero-illustration {
+    top: -16%;
+    height: 116%;
+    object-position: 85% center;
+  }
+
+  .hero-stage::before,
+  .hero-stage::after {
+    display: none;
+  }
+
+  .hero-art-mask-rule {
+    display: none;
   }
 }
 
-@media (min-width: 1400px) {
-  .hero-copy {
-    top: 26%;
+@media (max-width: 560px) {
+  .hero-headline .line-name {
+    font-size: clamp(3.5rem, 18.5vw, 4.6rem);
   }
 }

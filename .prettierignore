@@ -1,0 +1,7 @@
+# Local design-review artifacts
+.impeccable/
+
+# Generated tooling output
+node_modules/
+test-results/
+playwright-report/

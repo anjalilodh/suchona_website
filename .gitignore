@@ -5,3 +5,11 @@ skills-lock.json
 
 # OS
 .DS_Store
+
+# Node tooling
+node_modules/
+test-results/
+playwright-report/
+
+# Local design-review artifacts
+.impeccable/

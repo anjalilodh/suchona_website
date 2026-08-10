@@ -1,0 +1,15 @@
+{
+  "name": "suchona-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website development tooling",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "prettier": "^3.9.6"
+  }
+}
