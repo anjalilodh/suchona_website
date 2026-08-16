@@ -1599,12 +1599,19 @@ ul {
     object-position: 79% 30%;
   }
 
-  /* Keep the landscape and paisley full-bleed, but give the goddess more
-     breathing room on a phone. `scale` composes independently with the
-     JS-owned parallax transform, so Durga and her halo stay synchronized. */
+  /* Size these transparent source canvases directly instead of scaling a
+     cover-cropped render. Their shared 71.6% focal anchor is the center of
+     Durga's face/halo, so both layers remain aligned and the complete figure
+     can breathe inside the narrow viewport without being clipped. */
   .hero-v2-durga,
   .hero-v2-halo {
-    scale: 0.78;
+    inset: 12rem auto auto 50%;
+    width: auto;
+    max-width: none;
+    height: 48%;
+    object-fit: contain;
+    object-position: center;
+    transform: translateX(-71.6%);
   }
 
   .hero-v2-copy {
@@ -1669,7 +1676,7 @@ ul {
   }
 
   .hero-v2-wordmark {
-    font-size: clamp(4rem, 17vw, 4.65rem);
+    font-size: clamp(4.5rem, 20vw, 5.25rem);
   }
 
   .hero-v2-tagline {
