@@ -708,6 +708,29 @@ ul {
   z-index: 3;
 }
 
+/* A nearly imperceptible living drift. `translate` is intentionally separate
+   from the JS-controlled `transform`, so the scroll parallax remains smooth
+   while Durga and her halo breathe together as one composition. */
+.hero-v2-durga,
+.hero-v2-halo {
+  animation: hero-durga-bob 6.1s ease-in-out infinite;
+}
+
+@keyframes hero-durga-bob {
+  0%,
+  100% {
+    translate: 0 10px;
+  }
+
+  38% {
+    translate: 3px 0;
+  }
+
+  72% {
+    translate: -3px 16px;
+  }
+}
+
 .hero-v2-paisley {
   z-index: 4;
   pointer-events: none;
@@ -773,6 +796,12 @@ ul {
   .hero-v2-paisley,
   .hero-v2-copy-lockup {
     transform: none !important;
+  }
+
+  .hero-v2-durga,
+  .hero-v2-halo {
+    animation: none !important;
+    translate: none !important;
   }
 
   .hero-v2-copy-lockup {
@@ -1563,6 +1592,13 @@ ul {
     --nav-h: 4.25rem;
   }
 
+  /* The goddess sits around 79% across the wide source artwork. Center that
+     focal point on narrow screens and move every composited layer together
+     so the halo, figure, landscape, and paisley remain perfectly aligned. */
+  .hero-v2-layer {
+    object-position: 79% 30%;
+  }
+
   .hero-v2-copy {
     position: absolute;
     top: calc(var(--nav-h) + 0.5rem);
@@ -1570,6 +1606,51 @@ ul {
     width: min(12rem, calc(100vw - (2 * var(--page-pad))));
     padding: 0;
     text-align: left;
+  }
+
+  .stats-v2 {
+    padding-block: 1.6rem;
+    background-size: auto 100%;
+  }
+
+  .stats-v2-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    max-width: 18rem;
+    margin-inline: auto;
+  }
+
+  .stat-v2-item {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .stat-v2-icon {
+    width: 5.4rem;
+  }
+
+  .stat-v2-text {
+    min-width: 0;
+  }
+
+  .stat-v2-value {
+    font-size: 2.45rem;
+  }
+
+  .stat-v2-label {
+    max-width: 10.5rem;
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  .divider-strip {
+    height: 3.5rem;
+  }
+
+  .divider-strip img {
+    width: 220%;
+    min-width: 220%;
   }
 
   .hero-v2-wordmark {
@@ -1610,8 +1691,4 @@ ul {
     align-items: flex-start;
   }
 
-  .divider-strip::before,
-  .divider-strip::after {
-    width: calc(50% - 5.5rem);
-  }
 }

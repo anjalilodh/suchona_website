@@ -220,15 +220,33 @@
 
     if (!statsMotionPreference.matches) {
       statsSection.classList.add('stats-v2-motion-ready');
-      var statsRevealObserver = new IntersectionObserver(
-        function (entries) {
-          if (!entries[0]?.isIntersecting) return;
-          statsSection.classList.add('is-visible');
-          statsRevealObserver.disconnect();
-        },
-        { threshold: 0.22 },
-      );
-      statsRevealObserver.observe(statsSection);
+      var statsRevealObserver;
+      var armStatsReveal = function () {
+        statsRevealObserver?.disconnect();
+        statsSection.classList.remove('is-visible');
+        // Commit the starting state before observing again so a restored
+        // scroll position still gets a fresh transition after refresh.
+        void statsSection.offsetWidth;
+        statsRevealObserver = new IntersectionObserver(
+          function (entries) {
+            var entry = entries[0];
+            if (entry?.isIntersecting) {
+              statsSection.classList.add('is-visible');
+            } else if (entry && entry.boundingClientRect.top > 0) {
+              // The visitor has returned to the hero above the stats. Reset
+              // the entrance so it plays again on the next downward pass.
+              statsSection.classList.remove('is-visible');
+            }
+          },
+          { threshold: 0.22 },
+        );
+        statsRevealObserver.observe(statsSection);
+      };
+
+      armStatsReveal();
+      window.addEventListener('pageshow', function () {
+        window.setTimeout(armStatsReveal, 60);
+      });
     }
   }
 
@@ -308,13 +326,16 @@
   ).matches;
 
   if (statValues.length && !reduceMotion && 'IntersectionObserver' in window) {
+    var statCountRun = 0;
     var runCount = function (el) {
       var target = parseInt(el.getAttribute('data-count-to'), 10);
       var suffix = el.getAttribute('data-count-suffix') || '';
       var duration = 1200;
       var start = null;
+      var runId = statCountRun;
 
       var step = function (timestamp) {
+        if (runId !== statCountRun) return;
         if (start === null) start = timestamp;
         var progress = Math.min((timestamp - start) / duration, 1);
         var eased = 1 - Math.pow(1 - progress, 3);
@@ -327,20 +348,46 @@
       window.requestAnimationFrame(step);
     };
 
-    var statObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            runCount(entry.target);
-            statObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
+    var statObserver;
+    var armStatCounts = function () {
+      statCountRun += 1;
+      statObserver?.disconnect();
+      statValues.forEach(function (el) {
+        el.textContent = '0';
+      });
+      statObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (
+              entry.isIntersecting &&
+              entry.target.dataset.countActive !== 'true'
+            ) {
+              entry.target.dataset.countActive = 'true';
+              runCount(entry.target);
+            } else if (
+              !entry.isIntersecting &&
+              entry.boundingClientRect.top > 0
+            ) {
+              // Reset only when the stat is below the viewport (the user is
+              // back in the hero), not after they continue farther down.
+              statCountRun += 1;
+              entry.target.dataset.countActive = 'false';
+              entry.target.textContent = '0';
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
 
-    statValues.forEach(function (el) {
-      statObserver.observe(el);
+      statValues.forEach(function (el) {
+        el.dataset.countActive = 'false';
+        statObserver.observe(el);
+      });
+    };
+
+    armStatCounts();
+    window.addEventListener('pageshow', function () {
+      window.setTimeout(armStatCounts, 60);
     });
   } else {
     statValues.forEach(function (el) {
