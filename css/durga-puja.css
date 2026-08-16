@@ -1,0 +1,773 @@
+/* ==========================================================================
+   Durga Puja 2026 — page-specific styles (v2 track)
+   Loaded after css/style-v2.css. Reuses shared tokens/primitives from that
+   file (see DESIGN-v2.md for palette + type rules).
+
+   One new token is defined below: --durga-maroon-deep. The reference mockup
+   this page matches uses a General Information / Food Menu background that
+   reads a hair darker and browner than --v2-terracotta-dark (#6b2410) — close
+   enough to reuse the shared palette everywhere else, but this one section
+   color is a deliberate, checked-by-eye departure.
+   ========================================================================== */
+
+:root {
+  --durga-maroon-deep: #52180c;
+}
+
+/* ---- Nav — cream over the hero, dark ink once solid/scrolled ----
+   Scoped to this page only via :has(.durga-hero); does not touch the
+   scroll/is-solid JS logic, only the color of the already-computed state. */
+
+/* Scoped to direct children only (> li > a) so it covers the top-level
+   links/triggers but not the nested dropdown-menu links — those sit on
+   their own always-cream panel and need to stay forest green to read. */
+body:has(.durga-hero) .site-header-v2:not(.is-solid) .nav-links-v2 > li > a {
+  color: var(--v2-cream);
+}
+
+body:has(.durga-hero) .site-header-v2:not(.is-solid) .nav-toggle-v2 span {
+  background: var(--v2-cream);
+}
+
+/* ---- Hero — full-bleed goddess illustration, wordmark layered on top ----
+   The image is the hero's only background — the wordmark sits absolutely
+   over its lower portion, it does not sit in a separate flat-color block
+   below the image. A dark scrim (::after) keeps the cream/gold wordmark
+   legible against the image regardless of what's under the crop. */
+
+.durga-hero {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #0f0704;
+}
+
+.durga-hero-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+.durga-hero-copy {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: clamp(3rem, 9vw, 6rem);
+  transform: translate(-50%, 30px);
+  width: max-content;
+  max-width: 90vw;
+  padding: 0 var(--page-pad);
+  text-align: center;
+}
+
+.durga-hero-wordmark {
+  /* Matches the homepage hero's "Suchona" wordmark (.hero-v2-wordmark):
+     same font-family/weight, just re-colored and re-sized for this hero. */
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  font-size: clamp(3.25rem, 2.21rem + 4.42vw, 5.85rem);
+  color: var(--v2-cream);
+  white-space: nowrap;
+}
+
+.durga-hero-year {
+  display: inline;
+  color: inherit;
+  font-size: inherit;
+}
+
+.durga-hero-bengali {
+  margin: 0.6rem 0 0;
+  font-family: 'Noto Sans Bengali', 'Siyam Rupali', var(--font-section-heading);
+  font-size: clamp(1.52rem, 1.31rem + 0.69vw, 1.93rem);
+  color: var(--v2-gold);
+  transform: translate(-2px, -6px);
+}
+
+/* ---- Shared maroon section treatment (General Info, Food Menu) ---- */
+
+.durga-section-maroon {
+  background: var(--durga-maroon-deep);
+  color: var(--v2-cream);
+}
+
+.durga-section-maroon .section-heading {
+  color: var(--v2-cream);
+}
+
+.durga-section-maroon .body-copy {
+  color: var(--v2-cream);
+  opacity: 0.92;
+}
+
+.durga-subheading {
+  margin: 3rem 0 0.75rem;
+  font-family: var(--font-section-heading);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.75rem);
+  color: var(--v2-ink);
+}
+
+.durga-note {
+  margin: 1.5rem 0 0;
+  font-family: var(--font-label);
+  font-size: 0.9rem;
+  color: var(--v2-forest);
+}
+
+.durga-note strong {
+  color: var(--v2-ink);
+  font-weight: 600;
+}
+
+.durga-note-divider {
+  margin: 0 0.6em;
+  opacity: 0.5;
+}
+
+.durga-email-link {
+  color: inherit;
+  text-decoration-color: rgba(26, 22, 15, 0.4);
+  text-underline-offset: 0.2em;
+}
+
+.durga-email-link:hover,
+.durga-email-link:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+/* ---- General info ---- */
+
+.durga-info {
+  position: relative;
+  overflow: clip;
+}
+
+.durga-info-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  transform: translateY(-50px);
+}
+
+.durga-info-intro .body-copy {
+  max-width: 30rem;
+  margin-bottom: 0;
+}
+
+.durga-info-details {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.durga-info-item {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(251, 225, 184, 0.18);
+}
+
+.durga-info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.durga-info-label {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--v2-gold);
+}
+
+.durga-info-value {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--v2-cream);
+}
+
+.durga-info-dhak {
+  position: absolute;
+  z-index: 0;
+  /* Decorative placement is intentionally offset beyond the content grid. */
+  left: clamp(calc(-2rem + 200px), calc(-4vw + 200px), calc(-1rem + 200px));
+  bottom: clamp(calc(-3rem + 50px), calc(-5vw + 50px), calc(-1.5rem + 50px));
+  width: clamp(11.7rem, 20.8vw, 19.5rem);
+  height: auto;
+  opacity: 0.9;
+  pointer-events: none;
+  transform: translateY(0);
+}
+
+/* ---- Pricing ---- */
+
+.durga-pricing {
+  position: relative;
+}
+
+/* Independent boundary layer between General Information and Pricing. The
+   source line is 12.4% down its transparent canvas, so translating the image
+   by that amount pins the gold rule exactly to the section seam. */
+.durga-pricing-boundary {
+  position: relative;
+  z-index: 20;
+  height: 0;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.durga-pricing-boundary img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: 104.5%;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -12.4%);
+}
+
+.durga-pricing .body-copy {
+  max-width: 42rem;
+}
+
+.durga-pricing-intro {
+  margin: 0 0 2rem;
+  text-align: left;
+}
+
+/* Shared by both "Advanced Registration" and "On-Site Registration" via
+   .durga-subheading — kept as its own class only so this section can adjust
+   spacing without touching .durga-subheading's other use. */
+.durga-pricing-subheading {
+  margin-top: 0;
+}
+
+.durga-pricing-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.pricing-card {
+  display: block;
+  background: var(--v2-cream);
+  color: var(--v2-ink);
+  text-decoration: none;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 16px 32px -18px rgba(26, 22, 15, 0.5);
+  border: 1px solid rgba(201, 134, 60, 0.35);
+  transition:
+    transform 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out);
+}
+
+.pricing-card:focus-visible {
+  outline: 3px solid var(--v2-terracotta);
+  outline-offset: 4px;
+}
+
+.pricing-card-header {
+  padding: 1.25rem 1.35rem 1rem;
+  background: var(--v2-sand);
+  border-bottom: 1.5px solid var(--v2-gold);
+}
+
+.pricing-card-header h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-section-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--v2-terracotta-dark);
+}
+
+.pricing-card-eligibility {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--v2-forest);
+}
+
+.pricing-card-list {
+  margin: 0;
+  padding: 0.5rem 1.35rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px dashed rgba(26, 22, 15, 0.15);
+}
+
+.pricing-card-row:last-child {
+  border-bottom: none;
+}
+
+.pricing-card-desc {
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.pricing-card-price {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--v2-terracotta);
+}
+
+.pricing-card-note {
+  margin: -0.3rem 0 0.2rem;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--v2-forest);
+}
+
+/* ---- On-spot registration ---- */
+
+.durga-onspot {
+  position: relative;
+}
+
+.durga-onspot .durga-pricing-subheading {
+  margin-top: 3.5rem;
+}
+
+.durga-onspot-grid {
+  max-width: none;
+}
+
+.durga-onspot-lady {
+  position: absolute;
+  /* Oversized decorative figure, offset beyond the card grid. */
+  right: clamp(calc(-1rem - 85px), calc(-3vw - 85px), calc(0.5rem - 85px));
+  bottom: clamp(calc(-2rem + 40px), calc(-4vw + 40px), calc(-0.5rem + 40px));
+  width: clamp(20rem, 35vw, 31rem);
+  height: auto;
+  pointer-events: none;
+}
+
+/* ---- Food menu (own standalone, taller section) ---- */
+
+.durga-menu {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+  padding-block: clamp(5rem, 11vw, 9rem);
+}
+
+.durga-menu-title {
+  text-align: center;
+  transform: translateY(-50px);
+}
+
+.durga-menu-paisley {
+  position: absolute;
+  z-index: 3;
+  width: 37.2vw;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.durga-menu-paisley-left {
+  top: -2vw;
+  left: calc(-1.1vw - 15px);
+  object-position: left top;
+  transform: scaleY(-1);
+}
+
+.durga-menu-paisley-right {
+  right: calc(-1.1vw - 15px);
+  bottom: -2.1vw;
+  object-position: right bottom;
+}
+
+.durga-menu > .section-container {
+  position: relative;
+  z-index: 2;
+}
+
+.durga-menu-grid {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+.durga-menu-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.durga-menu-photo {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+}
+
+.durga-menu-card h3 {
+  margin: 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v2-gold);
+}
+
+.durga-menu-items {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.durga-menu-items li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+  color: var(--v2-cream);
+  opacity: 0.92;
+}
+
+.durga-menu-items li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--v2-gold);
+}
+
+/* ---- Registration / payment ---- */
+
+.durga-registration {
+  position: relative;
+  z-index: 1;
+  overflow: clip;
+}
+
+#durga-registration-title {
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+
+.durga-registration > .section-container {
+  position: relative;
+  z-index: 1;
+}
+
+.durga-registration-intro {
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.durga-registration-intro .body-copy {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+/* Three-step Register -> Pay -> Confirm flow */
+
+.durga-steps {
+  margin: clamp(3rem, 6vw, 4.5rem) 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  max-width: 66rem;
+  margin-inline: auto;
+}
+
+.durga-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 15.5rem;
+}
+
+.durga-step-number {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: var(--v2-terracotta);
+  color: var(--v2-cream);
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.durga-step-icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-bottom: 1.1rem;
+}
+
+.durga-step-label {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-section-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--v2-ink);
+}
+
+.durga-step-desc {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--v2-forest);
+}
+
+.durga-step-connector {
+  flex: 1 1 auto;
+  align-self: center;
+  margin: 0 -0.5rem;
+  height: 1px;
+  min-width: 2rem;
+  margin-top: -2.5rem;
+  border-top: 1.5px dashed var(--v2-gold);
+}
+
+/* Payment methods + QR */
+
+.durga-registration-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.durga-registration-copy {
+  position: relative;
+}
+
+.durga-payment-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  transform: translateY(-12px);
+}
+
+.durga-payment-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--v2-cream);
+  border: 2px solid var(--v2-terracotta);
+  border-radius: var(--radius-card);
+  box-shadow: 0 12px 26px -18px rgba(26, 22, 15, 0.4);
+}
+
+.durga-payment-card-logo {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  margin-top: 0.15rem;
+}
+
+.durga-payment-card-title {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-section-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--v2-ink);
+}
+
+.durga-payment-card-desc {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--v2-forest);
+}
+
+.durga-registration-graphic {
+  display: block;
+  width: clamp(27rem, 54vw, 39rem);
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0 0;
+}
+
+.durga-qr-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.durga-qr-label {
+  position: relative;
+  z-index: 3;
+  margin: 0 0 1rem;
+  padding-inline: 0.5rem;
+  background: var(--v2-cream);
+  font-family: var(--font-section-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--v2-ink);
+}
+
+.durga-qr-frame-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 18rem;
+  aspect-ratio: 1 / 1;
+}
+
+.durga-qr-border {
+  position: absolute;
+  z-index: 2;
+  inset: -37.5%;
+  width: 175%;
+  max-width: none;
+  height: 175%;
+  pointer-events: none;
+  transform: translate(-20px, 20px);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pricing-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 22px 38px -18px rgba(26, 22, 15, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card {
+    transition: box-shadow 180ms var(--ease-out);
+  }
+
+  .pricing-card:hover {
+    transform: none;
+  }
+}
+
+.durga-qr-frame {
+  position: absolute;
+  z-index: 1;
+  top: calc(50% + 20px);
+  left: calc(50% - 20px);
+  width: 88%;
+  height: 88%;
+  padding: 0.4rem;
+  background: transparent;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .durga-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .durga-info-dhak {
+    display: none;
+  }
+
+  .durga-registration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .durga-qr-wrap {
+    align-items: center;
+    text-align: center;
+  }
+
+  .durga-qr-frame-wrap {
+    margin-inline: auto;
+  }
+
+  .durga-pricing-grid,
+  .durga-onspot-grid {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .durga-onspot-lady {
+    position: static;
+    display: block;
+    margin: 2rem auto 0;
+    width: clamp(9rem, 40vw, 12rem);
+  }
+
+  .durga-menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .durga-menu-paisley {
+    display: none;
+  }
+
+  .durga-steps {
+    flex-wrap: wrap;
+    row-gap: 2rem;
+  }
+
+  .durga-step-connector {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .durga-hero-wordmark {
+    font-size: clamp(2rem, 10.2vw, 2.5rem);
+  }
+
+  .durga-qr-frame-wrap {
+    max-width: 12rem;
+  }
+
+  .durga-payment-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .durga-menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .durga-step {
+    width: 100%;
+  }
+}

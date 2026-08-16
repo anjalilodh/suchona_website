@@ -1,56 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donate | Suchona</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html" class="site-name">Suchona</a>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <span>Events</span>
-          <ul class="dropdown-menu">
-            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
-            <li><a href="events.html">Events</a></li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>Donate | Suchona</title>
+    <meta
+      name="description"
+      content="Support Suchona, the Bengali Association of Iowa and Illinois — donate via Zelle to help fund Durga Puja and year-round community programs."
+    />
+    <link rel="stylesheet" href="css/style-v2.css" />
+    <link rel="stylesheet" href="css/donate.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header-v2">
+      <div class="nav-inner-v2">
+        <button
+          class="nav-toggle-v2"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav-v2"
+        >
+          <span></span><span></span><span></span>
+          <span class="sr-only">Menu</span>
+        </button>
+
+        <nav class="primary-nav-v2" id="primary-nav-v2" aria-label="Primary">
+          <ul class="nav-links-v2">
+            <li><a href="index-v2.html">Home</a></li>
+            <li class="nav-dropdown-v2">
+              <a href="events.html" class="nav-dropdown-v2-trigger">
+                Events
+                <span class="nav-dropdown-v2-chevron" aria-hidden="true"></span>
+              </a>
+              <ul class="nav-dropdown-v2-menu">
+                <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+                <li><a href="events.html">All Events</a></li>
+              </ul>
+            </li>
+            <li class="nav-dropdown-v2">
+              <a href="our-story.html" class="nav-dropdown-v2-trigger">
+                About Us
+                <span class="nav-dropdown-v2-chevron" aria-hidden="true"></span>
+              </a>
+              <ul class="nav-dropdown-v2-menu">
+                <li><a href="our-story.html">Our Story</a></li>
+                <li><a href="who-we-are.html">Who We Are</a></li>
+              </ul>
+            </li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="magazine.html">Magazine</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-donate-v2">
+              <a href="donate.html" aria-label="Donate">
+                <span class="nav-donate-v2-crop">
+                  <img
+                    src="images/homepage/hero/donate-button.png"
+                    alt="Donate"
+                    width="1536"
+                    height="1024"
+                  />
+                </span>
+              </a>
+            </li>
           </ul>
-        </li>
-        <li class="dropdown">
-          <span>About Us</span>
-          <ul class="dropdown-menu">
+        </nav>
+        <div class="nav-scrim-v2"></div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ================= DONATE ================= -->
+      <section class="section donate-page" aria-labelledby="donate-title">
+        <div class="section-container donate-page-grid">
+          <div class="donate-copy">
+            <h1 id="donate-title" class="section-heading">Support Suchona</h1>
+            <p class="body-copy">
+              Suchona is a volunteer-run, community-supported nonprofit. Every
+              donation helps us host Durga Puja, cultural programs, and
+              gatherings that keep Bengali traditions alive for families across
+              Iowa and Illinois.
+            </p>
+            <ol class="donate-steps">
+              <li>Open your bank's mobile app and choose Zelle.</li>
+              <li>
+                Scan the QR code, or search for Suchona using the email on file.
+              </li>
+              <li>
+                Enter your donation amount and send — Suchona receives it
+                directly, with no fees.
+              </li>
+            </ol>
+          </div>
+
+          <div class="donate-qr-col">
+            <div class="donate-qr-frame-wrap">
+              <img
+                class="donate-qr-border"
+                src="images/durga/durga-venmo-border.png"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+              <img
+                class="donate-qr-frame"
+                src="images/sample-wr%20code.svg"
+                alt="Sample Zelle QR code"
+                width="296"
+                height="296"
+              />
+            </div>
+
+            <p class="donate-zelle-note">
+              Send to:
+              <a
+                class="donate-email-link"
+                href="mailto:suchonagovbody@gmail.com"
+                >suchonagovbody@gmail.com</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SPONSORS ================= -->
+      <section class="sponsors-v2" aria-labelledby="sponsors-v2-title">
+        <div class="section-container sponsors-v2-inner">
+          <h2 id="sponsors-v2-title" class="section-heading sponsors-v2-title">
+            Thank You to Our Sponsors
+          </h2>
+          <ul class="sponsors-v2-grid">
+            <li class="sponsor-v2-frame">
+              <img
+                src="images/homepage/sponsors/Screenshot%202026-08-15%20at%209.50.41%E2%80%AFPM.png"
+                alt="Dutta's Kitchen"
+                width="856"
+                height="854"
+                loading="lazy"
+              />
+            </li>
+            <li class="sponsor-v2-frame">
+              <img
+                src="images/homepage/sponsors/k-brothers.png"
+                alt="K Brothers"
+                width="414"
+                height="334"
+                loading="lazy"
+              />
+            </li>
+            <li class="sponsor-v2-frame">
+              <img
+                src="images/homepage/sponsors/sleep.jpg"
+                alt="Sleep Inn by Choice Hotels"
+                width="1801"
+                height="1801"
+                loading="lazy"
+              />
+            </li>
+            <li class="sponsor-v2-frame">
+              <img
+                src="images/homepage/sponsors/star-blooms.jpg"
+                alt="Star Blooms"
+                width="500"
+                height="500"
+                loading="lazy"
+              />
+            </li>
+            <li class="sponsor-v2-frame">
+              <img
+                src="images/homepage/sponsors/urban-acres.jpg"
+                alt="Urban Acres Real Estate"
+                width="1365"
+                height="1060"
+                loading="lazy"
+              />
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-v2">
+      <div class="section-container footer-v2-columns">
+        <img
+          class="footer-v2-backdrop"
+          src="images/homepage/footer/new-new-background-footer.png"
+          alt=""
+          aria-hidden="true"
+/>
+        <div class="footer-v2-brand">
+          <p class="footer-v2-brand-name">Suchona</p>
+          <ul class="footer-v2-social">
+            <li>
+              <a href="https://www.facebook.com/suchona.iowacity" aria-label="Suchona on Facebook" target="_blank" rel="noopener">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <path
+                    d="M13.5 21v-7h2.3l.35-2.7h-2.65V9.6c0-.78.22-1.32 1.34-1.32h1.44V5.9c-.25-.03-1.1-.1-2.1-.1-2.08 0-3.5 1.27-3.5 3.6v2h-2.35v2.7h2.35V21"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:suchonagovbody@gmail.com" aria-label="Email Suchona">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <rect x="6.5" y="7.5" width="11" height="9" rx="1.5" />
+                  <path d="m7 8.5 5 4 5-4" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <nav class="footer-v2-group footer-v2-col-explore" aria-label="Explore">
+          <p class="footer-v2-group-title">Explore</p>
+          <ul>
+            <li><a href="index-v2.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="magazine.html">Magazine</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-about" aria-label="About Us">
+          <p class="footer-v2-group-title">About Us</p>
+          <ul>
             <li><a href="our-story.html">Our Story</a></li>
             <li><a href="who-we-are.html">Who We Are</a></li>
           </ul>
-        </li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="magazine.html">Magazine</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html" class="btn-donate">Donate</a></li>
-      </ul>
-    </nav>
-  </header>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-events" aria-label="Events">
+          <p class="footer-v2-group-title">Events</p>
+          <ul>
+            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+            <li><a href="events.html">All Events</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-connect" aria-label="Connect">
+          <p class="footer-v2-group-title">Connect</p>
+          <ul>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html">Donate</a></li>
+          </ul>
+        </nav>
+        <div class="footer-v2-newsletter-col">
+          <p class="footer-v2-newsletter-title">Email Newsletter</p>
+          <form
+            class="footer-v2-newsletter"
+            data-footer-newsletter-form
+            novalidate
+          >
+            <label class="sr-only" for="footer-newsletter-email"
+              >Email address</label
+            >
+            <input
+              type="email"
+              id="footer-newsletter-email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+            <button type="submit" class="button-v2">Subscribe</button>
+          </form>
+          <p
+            class="footer-v2-newsletter-status"
+            data-footer-newsletter-status
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
+      </div>
+      <div class="footer-v2-base">
+        <p class="footer-v2-copyright">
+          &copy; 2026 Suchona. All rights reserved.
+        </p>
+      </div>
+    </footer>
 
-  <main>
-    <h1>Donate</h1>
-  </main>
-
-  <footer>
-    <section class="social-links">
-      <!-- Social links placeholder -->
-    </section>
-    <section class="newsletter-signup">
-      <form>
-        <!-- Newsletter signup form placeholder -->
-      </form>
-    </section>
-    <section class="sponsors-thanks">
-      <!-- Sponsors thank-you placeholder -->
-    </section>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/site-v2.js"></script>
+  </body>
 </html>

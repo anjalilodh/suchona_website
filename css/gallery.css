@@ -1,0 +1,512 @@
+/* ==========================================================================
+   Gallery — page-specific styles (v2 track)
+   Loaded after css/style-v2.css. Reuses shared tokens/primitives from that
+   file (see DESIGN-v2.md); nothing here invents a new color or font.
+   ========================================================================== */
+
+.gallery-intro {
+  padding-top: calc(var(--nav-h) + clamp(2rem, 5vw, 3.5rem));
+  padding-bottom: clamp(0.5rem, 1.5vw, 1rem);
+  text-align: center;
+}
+
+.gallery-intro .section-heading {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 8.5vw, 4.75rem);
+  line-height: 1.02;
+}
+
+/* ==========================================================================
+   Featured photographs — curated opening carousel
+   ========================================================================== */
+
+.gallery-featured {
+  padding-top: clamp(1rem, 2.5vw, 1.75rem);
+  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+}
+
+.gallery-featured-container {
+  max-width: 78rem;
+}
+
+.gallery-featured-heading,
+.gallery-archive-heading {
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  text-align: center;
+}
+
+.gallery-featured-eyebrow {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--v2-terracotta);
+}
+
+.gallery-featured-title {
+  margin: 0;
+  font-family: var(--font-section-heading);
+  font-size: clamp(1.8rem, 1.35rem + 1.6vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--v2-ink);
+}
+
+.gallery-feature-carousel {
+  position: relative;
+}
+
+.gallery-feature-viewport {
+  position: relative;
+  min-height: clamp(25rem, 58vw, 40rem);
+  overflow: hidden;
+  border: 1px solid rgba(167, 112, 30, 0.62);
+  border-radius: var(--radius-card);
+  background: var(--v2-placeholder-bg);
+  box-shadow:
+    0 0 0 5px var(--v2-cream),
+    0 0 0 6px rgba(167, 112, 30, 0.35);
+}
+
+.gallery-feature-slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: zoom-in;
+  opacity: 0;
+  transform: scale(1.025);
+  pointer-events: none;
+  transition:
+    opacity 500ms var(--ease-out),
+    transform 650ms var(--ease-out);
+}
+
+.gallery-feature-slide.is-active {
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.gallery-feature-slide:focus-visible {
+  outline: 3px solid var(--v2-terracotta);
+  outline-offset: -6px;
+}
+
+.gallery-feature-image {
+  border-radius: 0;
+  object-position: center;
+}
+
+.gallery-feature-image--outdoor {
+  object-position: center 38%;
+}
+
+.gallery-feature-image--stage {
+  object-position: center 46%;
+}
+
+.gallery-feature-caption {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(216, 148, 55, 0.75);
+  background: rgba(123, 38, 23, 0.9);
+  color: var(--v2-cream);
+  font-family: var(--font-label);
+  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.gallery-feature-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  margin-top: 1.35rem;
+}
+
+.gallery-feature-arrow {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  width: 3.65rem;
+  height: 3.65rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid var(--v2-gold);
+  border-radius: 50%;
+  background: var(--v2-maroon);
+  color: var(--v2-cream);
+  cursor: pointer;
+  font-size: 1.55rem;
+  box-shadow: 0 12px 28px -10px rgba(26, 22, 15, 0.6);
+  transform: translateY(-50%);
+  transition:
+    color 160ms var(--ease-out),
+    background-color 160ms var(--ease-out),
+    transform 160ms var(--ease-out);
+}
+
+.gallery-feature-arrow[data-feature-previous] { left: -4.8rem; }
+.gallery-feature-arrow[data-feature-next] { right: -4.8rem; }
+
+.gallery-feature-arrow:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.gallery-feature-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.gallery-feature-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 1px solid var(--v2-terracotta);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+
+.gallery-feature-dot.is-active {
+  background: var(--v2-terracotta);
+  transform: scale(1.35);
+}
+
+.gallery-feature-count {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--v2-terracotta);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-feature-arrow:hover {
+    background: var(--v2-terracotta);
+    color: var(--v2-cream);
+    transform: translateY(-50%) scale(1.06);
+  }
+
+  .gallery-feature-dot:hover {
+    transform: scale(1.35);
+  }
+}
+
+@media (max-width: 88rem) {
+  .gallery-feature-arrow[data-feature-previous] { left: 0.8rem; }
+  .gallery-feature-arrow[data-feature-next] { right: 0.8rem; }
+}
+
+.gallery-grid-section {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid rgba(167, 112, 30, 0.3);
+}
+
+/* Wider than the shared .section-container: a photo grid can use more of
+   the screen than a column of body copy should. */
+.gallery-grid-container {
+  max-width: 90rem;
+}
+
+/* ---- Grid ----
+   A "justified gallery": every row shares one fixed height, and each
+   card's own aspect ratio (square, landscape, or portrait) sets how much
+   of the row's width it claims — flex-grow stretches cards to close any
+   leftover gap so a row's photos always butt up edge to edge, interlocking
+   at different widths rather than sitting in uniform columns. */
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+}
+
+.gallery-grid .gallery-card--featured-duplicate {
+  display: none;
+}
+
+/* ---- Card ---- */
+
+.gallery-card {
+  position: relative;
+  display: block;
+  height: clamp(11rem, 15.5vw, 15.5rem);
+  aspect-ratio: 1 / 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--v2-placeholder-bg);
+  box-shadow: 0 10px 24px -14px rgba(26, 22, 15, 0.4);
+
+  /* Scroll-reveal starting state. .gallery-grid.js-reveal-ready is only
+     added once JS confirms it can actually run the reveal — without it,
+     cards stay at their natural opacity/position so a no-JS visitor (or a
+     JS error) never ends up with a permanently invisible gallery. */
+  transition:
+    box-shadow 0.22s var(--ease-out),
+    transform 0.22s var(--ease-out);
+}
+
+.gallery-card--landscape {
+  aspect-ratio: 16 / 9;
+}
+
+.gallery-card--portrait {
+  aspect-ratio: 4 / 5;
+}
+
+.gallery-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+
+/* ---- Hover / focus affordance ----
+   A small lift + shadow, nothing else. Gated to real hover-capable
+   pointers so touchscreens never get a stuck hover state; keyboard focus
+   gets the same lift regardless of pointer type. */
+
+.gallery-card:focus-visible {
+  outline: 2px solid var(--v2-terracotta);
+  outline-offset: 3px;
+}
+
+.gallery-card:focus-visible,
+.gallery-grid.js-reveal-ready .gallery-card.is-visible:focus-visible {
+  z-index: 2;
+  box-shadow: 0 26px 52px -18px rgba(26, 22, 15, 0.58);
+  transform: translate3d(0, -6px, 0) scale(1.018);
+  transition-delay: 0s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-card:hover,
+  .gallery-grid.js-reveal-ready .gallery-card.is-visible:hover {
+    z-index: 2;
+    box-shadow: 0 26px 52px -18px rgba(26, 22, 15, 0.58);
+    transform: translate3d(0, -6px, 0) scale(1.018);
+    transition-delay: 0s;
+  }
+}
+
+/* ---- Staggered scroll reveal ----
+   Applied only once js/gallery.js confirms IntersectionObserver support
+   and adds .js-reveal-ready to the grid; individual cards then animate in
+   as .is-visible is added, each with its own delay/duration set inline by
+   JS so photos don't all land in lockstep. */
+
+.gallery-grid.js-reveal-ready .gallery-card {
+  opacity: 0;
+  transform: translateY(1.5rem);
+}
+
+.gallery-grid.js-reveal-ready .gallery-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--reveal-duration, 0.6s) var(--ease-out),
+    transform var(--reveal-duration, 0.6s) var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.gallery-grid.js-reveal-ready
+  .gallery-card.is-visible.is-reveal-complete {
+  transition:
+    box-shadow 0.22s var(--ease-out),
+    transform 0.22s var(--ease-out);
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-feature-slide {
+    transform: none;
+    transition: opacity 200ms linear;
+  }
+
+  .gallery-grid.js-reveal-ready .gallery-card {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Lightbox
+   ========================================================================== */
+
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+/* The [hidden] attribute is how JS closes the modal. Without this rule,
+   the class selector above (display: grid) outranks the browser's default
+   [hidden] { display: none } and the modal — full-viewport, fixed,
+   z-index: 200 — stays in the hit-testing tree at all times, silently
+   swallowing every click on the page (including the nav) even while
+   visually invisible. */
+.gallery-modal[hidden] {
+  display: none;
+}
+
+.gallery-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 12, 8, 0.9);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.gallery-modal.is-open .gallery-modal-backdrop {
+  opacity: 1;
+}
+
+.gallery-modal-close {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid rgba(251, 225, 184, 0.35);
+  background: rgba(26, 22, 15, 0.6);
+  color: var(--v2-cream);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.25s var(--ease-out),
+    background 0.2s var(--ease-out);
+}
+
+.gallery-modal.is-open .gallery-modal-close {
+  opacity: 1;
+}
+
+.gallery-modal-close:hover,
+.gallery-modal-close:focus-visible {
+  background: var(--v2-terracotta);
+}
+
+.gallery-modal-figure {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 92vw;
+  max-height: 88vh;
+  line-height: 0;
+}
+
+.gallery-modal-image {
+  display: block;
+  max-width: 92vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--radius-card);
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.6);
+  transform-origin: center;
+  /* JS drives the zoom-from-thumbnail transform; transition is toggled on
+     only after the starting transform is applied (see gallery.js), so the
+     very first paint never animates from nothing. */
+}
+
+.gallery-modal-image.is-flipping {
+  will-change: transform;
+  transition:
+    transform 0.45s var(--ease-out),
+    opacity 0.2s linear;
+}
+
+body.gallery-modal-open {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-modal-image.is-flipping {
+    transition: opacity 0.2s linear;
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery-featured {
+    padding-bottom: 3.5rem;
+  }
+
+  .gallery-featured-container {
+    padding-inline: 1rem;
+  }
+
+  .gallery-feature-viewport {
+    min-height: min(118vw, 31rem);
+  }
+
+  .gallery-feature-caption {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+
+  .gallery-feature-controls {
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+  }
+
+  .gallery-feature-count {
+    display: none;
+  }
+
+  .gallery-feature-arrow {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .gallery-card {
+    height: 12rem;
+    flex-grow: 0;
+    flex-basis: 100%;
+  }
+
+  .gallery-card--portrait {
+    aspect-ratio: 1 / 1;
+  }
+}

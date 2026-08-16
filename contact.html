@@ -1,56 +1,327 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Suchona</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html" class="site-name">Suchona</a>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <span>Events</span>
-          <ul class="dropdown-menu">
-            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
-            <li><a href="events.html">Events</a></li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>Contact | Suchona</title>
+    <meta
+      name="description"
+      content="Get in touch with Suchona — send a message, subscribe to the newsletter, or follow along on social media."
+    />
+    <link rel="stylesheet" href="css/style-v2.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header-v2">
+      <div class="nav-inner-v2">
+        <button
+          class="nav-toggle-v2"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav-v2"
+        >
+          <span></span><span></span><span></span>
+          <span class="sr-only">Menu</span>
+        </button>
+
+        <nav class="primary-nav-v2" id="primary-nav-v2" aria-label="Primary">
+          <ul class="nav-links-v2">
+            <li><a href="index-v2.html">Home</a></li>
+            <li class="nav-dropdown-v2">
+              <a href="events.html" class="nav-dropdown-v2-trigger">
+                Events
+                <span class="nav-dropdown-v2-chevron" aria-hidden="true"></span>
+              </a>
+              <ul class="nav-dropdown-v2-menu">
+                <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+                <li><a href="events.html">All Events</a></li>
+              </ul>
+            </li>
+            <li class="nav-dropdown-v2">
+              <a href="our-story.html" class="nav-dropdown-v2-trigger">
+                About Us
+                <span class="nav-dropdown-v2-chevron" aria-hidden="true"></span>
+              </a>
+              <ul class="nav-dropdown-v2-menu">
+                <li><a href="our-story.html">Our Story</a></li>
+                <li><a href="who-we-are.html">Who We Are</a></li>
+              </ul>
+            </li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="magazine.html">Magazine</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-donate-v2">
+              <a href="donate.html" aria-label="Donate">
+                <span class="nav-donate-v2-crop">
+                  <img
+                    src="images/homepage/hero/donate-button.png"
+                    alt="Donate"
+                    width="1536"
+                    height="1024"
+                  />
+                </span>
+              </a>
+            </li>
           </ul>
-        </li>
-        <li class="dropdown">
-          <span>About Us</span>
-          <ul class="dropdown-menu">
+        </nav>
+        <div class="nav-scrim-v2"></div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="section contact-section" aria-labelledby="contact-title">
+        <div class="section-container contact-grid">
+          <div class="contact-main">
+            <h1 id="contact-title" class="section-heading">Drop us a line!</h1>
+            <p class="body-copy">
+              Have a question about an event, membership, or how to get
+              involved? Send us a message and we'll get back to you.
+            </p>
+
+            <form class="contact-form" data-contact-form novalidate>
+              <div class="form-field">
+                <label for="contact-name">Name</label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  autocomplete="name"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="contact-email">Email</label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+              <div class="form-field">
+                <label for="contact-message">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="button-v2">Send Message</button>
+              <p
+                class="form-status"
+                data-contact-status
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+          </div>
+
+          <aside class="contact-aside" aria-label="Other ways to reach us">
+            <div class="contact-block">
+              <h2 class="contact-block-heading">Stay in the loop</h2>
+              <p class="body-copy">
+                Subscribe for event announcements and community news.
+              </p>
+              <form class="newsletter-form" data-newsletter-form novalidate>
+                <label class="sr-only" for="newsletter-email"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  id="newsletter-email"
+                  name="email"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                  required
+                />
+                <button type="submit" class="button-v2 button-v2-outline">
+                  Subscribe
+                </button>
+              </form>
+              <p
+                class="form-status"
+                data-newsletter-status
+                role="status"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <div class="contact-block">
+              <h2 class="contact-block-heading">Reach us directly</h2>
+              <dl class="contact-details">
+                <div class="contact-details-row">
+                  <dt>Email</dt>
+                  <dd>
+                    <a href="mailto:suchonagovbody@gmail.com"
+                      >suchonagovbody@gmail.com</a
+                    >
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="contact-block">
+              <h2 class="contact-block-heading">Follow along</h2>
+              <ul class="contact-social">
+                <li>
+                  <a href="https://www.facebook.com/suchona.iowacity" aria-label="Suchona on Facebook" target="_blank" rel="noopener">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="5" />
+                      <path
+                        d="M13.5 21v-7h2.3l.35-2.7h-2.65V9.6c0-.78.22-1.32 1.34-1.32h1.44V5.9c-.25-.03-1.1-.1-2.1-.1-2.08 0-3.5 1.27-3.5 3.6v2h-2.35v2.7h2.35V21"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:suchonagovbody@gmail.com"
+                    aria-label="Email Suchona"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="5" />
+                      <rect x="6.5" y="7.5" width="11" height="9" rx="1.5" />
+                      <path d="m7 8.5 5 4 5-4" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-v2">
+      <div class="section-container footer-v2-columns">
+        <img
+          class="footer-v2-backdrop"
+          src="images/homepage/footer/new-new-background-footer.png"
+          alt=""
+          aria-hidden="true"
+/>
+        <div class="footer-v2-brand">
+          <p class="footer-v2-brand-name">Suchona</p>
+          <ul class="footer-v2-social">
+            <li>
+              <a href="https://www.facebook.com/suchona.iowacity" aria-label="Suchona on Facebook" target="_blank" rel="noopener">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <path
+                    d="M13.5 21v-7h2.3l.35-2.7h-2.65V9.6c0-.78.22-1.32 1.34-1.32h1.44V5.9c-.25-.03-1.1-.1-2.1-.1-2.08 0-3.5 1.27-3.5 3.6v2h-2.35v2.7h2.35V21"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:suchonagovbody@gmail.com" aria-label="Email Suchona">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <rect x="6.5" y="7.5" width="11" height="9" rx="1.5" />
+                  <path d="m7 8.5 5 4 5-4" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <nav class="footer-v2-group footer-v2-col-explore" aria-label="Explore">
+          <p class="footer-v2-group-title">Explore</p>
+          <ul>
+            <li><a href="index-v2.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="magazine.html">Magazine</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-about" aria-label="About Us">
+          <p class="footer-v2-group-title">About Us</p>
+          <ul>
             <li><a href="our-story.html">Our Story</a></li>
             <li><a href="who-we-are.html">Who We Are</a></li>
           </ul>
-        </li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="magazine.html">Magazine</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html" class="btn-donate">Donate</a></li>
-      </ul>
-    </nav>
-  </header>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-events" aria-label="Events">
+          <p class="footer-v2-group-title">Events</p>
+          <ul>
+            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+            <li><a href="events.html">All Events</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-connect" aria-label="Connect">
+          <p class="footer-v2-group-title">Connect</p>
+          <ul>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html">Donate</a></li>
+          </ul>
+        </nav>
+        <div class="footer-v2-newsletter-col">
+          <p class="footer-v2-newsletter-title">Email Newsletter</p>
+          <form
+            class="footer-v2-newsletter"
+            data-footer-newsletter-form
+            novalidate
+          >
+            <label class="sr-only" for="footer-newsletter-email"
+              >Email address</label
+            >
+            <input
+              type="email"
+              id="footer-newsletter-email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+            <button type="submit" class="button-v2">Subscribe</button>
+          </form>
+          <p
+            class="footer-v2-newsletter-status"
+            data-footer-newsletter-status
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
+      </div>
+      <div class="footer-v2-base">
+        <p class="footer-v2-copyright">
+          &copy; 2026 Suchona. All rights reserved.
+        </p>
+      </div>
+    </footer>
 
-  <main>
-    <h1>Contact</h1>
-  </main>
-
-  <footer>
-    <section class="social-links">
-      <!-- Social links placeholder -->
-    </section>
-    <section class="newsletter-signup">
-      <form>
-        <!-- Newsletter signup form placeholder -->
-      </form>
-    </section>
-    <section class="sponsors-thanks">
-      <!-- Sponsors thank-you placeholder -->
-    </section>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/site-v2.js"></script>
+    <script src="js/contact.js"></script>
+  </body>
 </html>

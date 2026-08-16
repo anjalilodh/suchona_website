@@ -1,56 +1,1207 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery | Suchona</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html" class="site-name">Suchona</a>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <span>Events</span>
-          <ul class="dropdown-menu">
-            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
-            <li><a href="events.html">Events</a></li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>Gallery | Suchona</title>
+    <meta
+      name="description"
+      content="Photos from Suchona's cultural events and community gatherings — Durga Puja, Saraswati Puja, and more."
+    />
+    <link rel="stylesheet" href="css/style-v2.css" />
+    <link rel="stylesheet" href="css/gallery.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header-v2">
+      <div class="nav-inner-v2">
+        <button
+          class="nav-toggle-v2"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav-v2"
+        >
+          <span></span><span></span><span></span>
+          <span class="sr-only">Menu</span>
+        </button>
+
+        <nav class="primary-nav-v2" id="primary-nav-v2" aria-label="Primary">
+          <ul class="nav-links-v2">
+            <li><a href="index-v2.html">Home</a></li>
+            <li class="nav-dropdown-v2">
+              <a href="events.html" class="nav-dropdown-v2-trigger">
+                Events
+                <span class="nav-dropdown-v2-chevron" aria-hidden="true"></span>
+              </a>
+              <ul class="nav-dropdown-v2-menu">
+                <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+                <li><a href="events.html">All Events</a></li>
+              </ul>
+            </li>
+            <li class="nav-dropdown-v2">
+              <a href="our-story.html" class="nav-dropdown-v2-trigger">
+                About Us
+                <span class="nav-dropdown-v2-chevron" aria-hidden="true"></span>
+              </a>
+              <ul class="nav-dropdown-v2-menu">
+                <li><a href="our-story.html">Our Story</a></li>
+                <li><a href="who-we-are.html">Who We Are</a></li>
+              </ul>
+            </li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="magazine.html">Magazine</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-donate-v2">
+              <a href="donate.html" aria-label="Donate">
+                <span class="nav-donate-v2-crop">
+                  <img
+                    src="images/homepage/hero/donate-button.png"
+                    alt="Donate"
+                    width="1536"
+                    height="1024"
+                  />
+                </span>
+              </a>
+            </li>
           </ul>
-        </li>
-        <li class="dropdown">
-          <span>About Us</span>
-          <ul class="dropdown-menu">
+        </nav>
+        <div class="nav-scrim-v2"></div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ================= INTRO ================= -->
+      <section
+        class="section gallery-intro"
+        aria-labelledby="gallery-intro-title"
+      >
+        <div class="section-container" data-page-fade>
+          <h1 id="gallery-intro-title" class="section-heading">Gallery</h1>
+          <img class="page-title-gold-border" src="images/page-title-gold-border.png" alt="" aria-hidden="true" />
+        </div>
+      </section>
+
+      <!-- ================= FEATURED MOMENTS ================= -->
+      <section
+        class="section gallery-featured"
+        aria-label="Featured photographs"
+      >
+        <div class="section-container gallery-featured-container">
+          <div
+            class="gallery-feature-carousel"
+            data-feature-carousel
+            data-page-fade
+            aria-roledescription="carousel"
+            aria-label="Featured Suchona photographs"
+          >
+            <div class="gallery-feature-viewport">
+              <button
+                type="button"
+                class="gallery-feature-slide is-active"
+                data-feature-slide
+                aria-label="Open full-size photo: Volunteers serving a community meal"
+              >
+                <img
+                  class="gallery-card-image gallery-feature-image"
+                  src="images/gallery/featured/gallery-16.jpg"
+                  alt="Volunteers serving food along a buffet line"
+                  width="2000"
+                  height="1091"
+                  fetchpriority="high"
+                  decoding="async"
+                />
+                <span class="gallery-feature-caption">Yummy food!</span>
+              </button>
+              <button
+                type="button"
+                class="gallery-feature-slide"
+                data-feature-slide
+                aria-label="Open full-size photo: Two boys standing before Durga idols"
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                <img
+                  class="gallery-card-image gallery-feature-image"
+                  src="images/gallery/featured/gallery-06.jpg"
+                  alt="Two boys standing before Durga idols"
+                  width="1505"
+                  height="2000"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="gallery-feature-caption">Young Celebration</span>
+              </button>
+              <button
+                type="button"
+                class="gallery-feature-slide"
+                data-feature-slide
+                aria-label="Open full-size photo: Family group posed before a Durga backdrop"
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                <img
+                  class="gallery-card-image gallery-feature-image"
+                  src="images/gallery/featured/gallery-07.jpg"
+                  alt="Family group posed before a Durga backdrop"
+                  width="2000"
+                  height="1494"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="gallery-feature-caption">Family &amp; Community</span>
+              </button>
+              <button
+                type="button"
+                class="gallery-feature-slide"
+                data-feature-slide
+                aria-label="Open full-size photo: Men and women seated together at a dinner table"
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                <img
+                  class="gallery-card-image gallery-feature-image"
+                  src="images/gallery/featured/gallery-14.jpg"
+                  alt="Men and women seated together at a dinner table"
+                  width="2000"
+                  height="1164"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="gallery-feature-caption">Around the Table</span>
+              </button>
+              <button
+                type="button"
+                class="gallery-feature-slide"
+                data-feature-slide
+                aria-label="Open full-size photo: Group photo beneath a decorated event backdrop"
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                <img
+                  class="gallery-card-image gallery-feature-image"
+                  src="images/gallery/featured/gallery-01.jpg"
+                  alt="Group photo beneath a decorated event backdrop"
+                  width="2000"
+                  height="1150"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="gallery-feature-caption">Suchona Together</span>
+              </button>
+              <button
+                type="button"
+                class="gallery-feature-slide"
+                data-feature-slide
+                aria-label="Open full-size photo: Large picnic group seated on a mat outdoors"
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                <img
+                  class="gallery-card-image gallery-feature-image"
+                  src="images/gallery/featured/gallery-25.jpg"
+                  alt="Large picnic group seated on a mat outdoors"
+                  width="2000"
+                  height="1510"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="gallery-feature-caption">Picnic by the Water</span>
+              </button>
+              <button
+                type="button"
+                class="gallery-feature-slide"
+                data-feature-slide
+                aria-label="Open full-size photo: Crowd gathered around idols during worship"
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                <img
+                  class="gallery-card-image gallery-feature-image"
+                  src="images/gallery/featured/gallery-37.jpg"
+                  alt="Crowd gathered around idols during worship"
+                  width="2000"
+                  height="1333"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="gallery-feature-caption">Puja in Progress</span>
+              </button>
+            </div>
+
+            <div class="gallery-feature-controls">
+              <button
+                class="gallery-feature-arrow"
+                type="button"
+                data-feature-previous
+                aria-label="Previous featured photograph"
+              >
+                <span aria-hidden="true">←</span>
+              </button>
+              <div class="gallery-feature-progress" aria-label="Choose a featured photograph">
+                <button type="button" class="gallery-feature-dot is-active" data-feature-dot aria-label="Show featured photograph 1" aria-current="true"></button>
+                <button type="button" class="gallery-feature-dot" data-feature-dot aria-label="Show featured photograph 2"></button>
+                <button type="button" class="gallery-feature-dot" data-feature-dot aria-label="Show featured photograph 3"></button>
+                <button type="button" class="gallery-feature-dot" data-feature-dot aria-label="Show featured photograph 4"></button>
+                <button type="button" class="gallery-feature-dot" data-feature-dot aria-label="Show featured photograph 5"></button>
+                <button type="button" class="gallery-feature-dot" data-feature-dot aria-label="Show featured photograph 6"></button>
+                <button type="button" class="gallery-feature-dot" data-feature-dot aria-label="Show featured photograph 7"></button>
+              </div>
+              <p class="gallery-feature-count" aria-live="polite">
+                <span data-feature-current>01</span>
+                <span aria-hidden="true">/</span>
+                <span>07</span>
+              </p>
+              <button
+                class="gallery-feature-arrow"
+                type="button"
+                data-feature-next
+                aria-label="Next featured photograph"
+              >
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section gallery-grid-section" aria-label="Photo gallery">
+        <div class="section-container gallery-grid-container">
+          <div class="gallery-archive-heading" data-page-reveal>
+            <p class="gallery-featured-eyebrow">The complete collection</p>
+            <h2 class="gallery-featured-title">Community Archive</h2>
+          </div>
+          <div class="gallery-grid" id="gallery-grid">
+            <button
+              type="button"
+              class="gallery-card gallery-card--featured-duplicate"
+              data-index="1"
+              aria-label="Open full-size photo: Group photo beneath a decorated event backdrop"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/featured/gallery-01.jpg"
+                alt="Group photo beneath a decorated event backdrop"
+                width="2000"
+                height="1150"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="2"
+              aria-label="Open full-size photo: Family of four posed together at a community event"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-02.jpg"
+                alt="Family of four posed together at a community event"
+                width="2000"
+                height="1756"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="3"
+              aria-label="Open full-size photo: Volunteers at a registration table with a QR code"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-03.jpg"
+                alt="Volunteers at a registration table with a QR code"
+                width="2000"
+                height="1469"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="4"
+              aria-label="Open full-size photo: Volunteers decorating a stage backdrop with garlands"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-04.jpg"
+                alt="Volunteers decorating a stage backdrop with garlands"
+                width="2000"
+                height="1495"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="5"
+              aria-label="Open full-size photo: Close-up of an elaborately decorated Durga idol"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-05.jpg"
+                alt="Close-up of an elaborately decorated Durga idol"
+                width="2000"
+                height="1475"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--portrait gallery-card--featured-duplicate"
+              data-index="6"
+              aria-label="Open full-size photo: Two boys standing before Durga idols"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/featured/gallery-06.jpg"
+                alt="Two boys standing before Durga idols"
+                width="1505"
+                height="2000"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--featured-duplicate"
+              data-index="7"
+              aria-label="Open full-size photo: Family group posed before a Durga backdrop"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/featured/gallery-07.jpg"
+                alt="Family group posed before a Durga backdrop"
+                width="2000"
+                height="1494"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="8"
+              aria-label="Open full-size photo: Elaborate Durga idol display with devotees nearby"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-08.jpg"
+                alt="Elaborate Durga idol display with devotees nearby"
+                width="2000"
+                height="1371"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--portrait"
+              data-index="9"
+              aria-label="Open full-size photo: Woman embracing a boy indoors"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-09.jpg"
+                alt="Woman embracing a boy indoors"
+                width="1691"
+                height="2000"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="10"
+              aria-label="Open full-size photo: Large group of women in colorful sarees indoors"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-10.jpg"
+                alt="Large group of women in colorful sarees indoors"
+                width="2000"
+                height="1469"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape"
+              data-index="11"
+              aria-label="Open full-size photo: Eight women posed together at an indoor event"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-11.jpg"
+                alt="Eight women posed together at an indoor event"
+                width="2000"
+                height="1470"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="12"
+              aria-label="Open full-size photo: Group seated at a red-themed dinner table"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-12.jpg"
+                alt="Group seated at a red-themed dinner table"
+                width="2000"
+                height="1385"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="13"
+              aria-label="Open full-size photo: Three women seated together at a dinner table"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-13.jpg"
+                alt="Three women seated together at a dinner table"
+                width="1866"
+                height="2000"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape gallery-card--featured-duplicate"
+              data-index="14"
+              aria-label="Open full-size photo: Men and women seated together at a dinner table"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/featured/gallery-14.jpg"
+                alt="Men and women seated together at a dinner table"
+                width="2000"
+                height="1164"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="15"
+              aria-label="Open full-size photo: Women posed before a wide decorated backdrop"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-15.jpg"
+                alt="Women posed before a wide decorated backdrop"
+                width="2000"
+                height="967"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape gallery-card--featured-duplicate"
+              data-index="16"
+              aria-label="Open full-size photo: Volunteers serving food along a buffet line"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/featured/gallery-16.jpg"
+                alt="Volunteers serving food along a buffet line"
+                width="2000"
+                height="1091"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="17"
+              aria-label="Open full-size photo: Volunteers assembling decorations indoors"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-17.jpg"
+                alt="Volunteers assembling decorations indoors"
+                width="2000"
+                height="1500"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="18"
+              aria-label="Open full-size photo: Group gathered in a kitchen at a potluck"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-18.jpg"
+                alt="Group gathered in a kitchen at a potluck"
+                width="2000"
+                height="1500"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="19"
+              aria-label="Open full-size photo: Three boys in kurtas posing together"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-19.jpg"
+                alt="Three boys in kurtas posing together"
+                width="2000"
+                height="1934"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--portrait"
+              data-index="20"
+              aria-label="Open full-size photo: Two children dancing indoors"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-20.jpg"
+                alt="Two children dancing indoors"
+                width="1643"
+                height="2000"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="21"
+              aria-label="Open full-size photo: Large family group seated near a small altar"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-21.jpg"
+                alt="Large family group seated near a small altar"
+                width="2000"
+                height="1491"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="22"
+              aria-label="Open full-size photo: Group of women in colorful sarees outdoors by a pond"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-22.jpg"
+                alt="Group of women in colorful sarees outdoors by a pond"
+                width="2000"
+                height="1980"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="23"
+              aria-label="Open full-size photo: Group of women posed outdoors among trees"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-23.jpg"
+                alt="Group of women posed outdoors among trees"
+                width="2000"
+                height="1479"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="24"
+              aria-label="Open full-size photo: Large group picnic outdoors on the grass"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-24.jpg"
+                alt="Large group picnic outdoors on the grass"
+                width="2000"
+                height="1478"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape gallery-card--featured-duplicate"
+              data-index="25"
+              aria-label="Open full-size photo: Large picnic group seated on a mat outdoors"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/featured/gallery-25.jpg"
+                alt="Large picnic group seated on a mat outdoors"
+                width="2000"
+                height="1510"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="26"
+              aria-label="Open full-size photo: Large group posed outdoors among autumn trees"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-26.jpg"
+                alt="Large group posed outdoors among autumn trees"
+                width="2000"
+                height="1429"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="27"
+              aria-label="Open full-size photo: Four men posing together indoors"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-27.jpg"
+                alt="Four men posing together indoors"
+                width="2000"
+                height="1479"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape"
+              data-index="28"
+              aria-label="Open full-size photo: Women in red and white sarees, wide group photo"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-28.jpg"
+                alt="Women in red and white sarees, wide group photo"
+                width="2000"
+                height="960"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="29"
+              aria-label="Open full-size photo: Volunteers decorating under an event tent"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-29.jpg"
+                alt="Volunteers decorating under an event tent"
+                width="2000"
+                height="1469"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="30"
+              aria-label="Open full-size photo: Large group photo in a glass-walled lobby"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-30.jpg"
+                alt="Large group photo in a glass-walled lobby"
+                width="2000"
+                height="1735"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="31"
+              aria-label="Open full-size photo: Three women taking a selfie together"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-31.jpg"
+                alt="Three women taking a selfie together"
+                width="2000"
+                height="1730"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape"
+              data-index="32"
+              aria-label="Open full-size photo: Large indoor group photo"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-32.jpg"
+                alt="Large indoor group photo"
+                width="2000"
+                height="1128"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="33"
+              aria-label="Open full-size photo: Group of adults and children under an indoor canopy"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-33.jpg"
+                alt="Group of adults and children under an indoor canopy"
+                width="2000"
+                height="1481"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="34"
+              aria-label="Open full-size photo: Group of men and children posed in a home"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-34.jpg"
+                alt="Group of men and children posed in a home"
+                width="2000"
+                height="1492"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape"
+              data-index="35"
+              aria-label="Open full-size photo: Group posed before a decorated Durga idol"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-35.jpg"
+                alt="Group posed before a decorated Durga idol"
+                width="2000"
+                height="1203"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="36"
+              aria-label="Open full-size photo: Devotees near an ornate puja altar setup"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-36.jpg"
+                alt="Devotees near an ornate puja altar setup"
+                width="2000"
+                height="1333"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--featured-duplicate"
+              data-index="37"
+              aria-label="Open full-size photo: Crowd gathered around idols during worship"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/featured/gallery-37.jpg"
+                alt="Crowd gathered around idols during worship"
+                width="2000"
+                height="1333"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="38"
+              aria-label="Open full-size photo: Two dancers posed before a theatrical backdrop"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-38.jpg"
+                alt="Two dancers posed before a theatrical backdrop"
+                width="2000"
+                height="1496"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="39"
+              aria-label="Open full-size photo: Women in sarees standing beside lit candles"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-39.jpg"
+                alt="Women in sarees standing beside lit candles"
+                width="2000"
+                height="1492"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="40"
+              aria-label="Open full-size photo: Guests seated at dinner tables indoors"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-40.jpg"
+                alt="Guests seated at dinner tables indoors"
+                width="2000"
+                height="1501"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="41"
+              aria-label="Open full-size photo: Performers gesturing on a theatrical stage"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-41.jpg"
+                alt="Performers gesturing on a theatrical stage"
+                width="2000"
+                height="1331"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="42"
+              aria-label="Open full-size photo: Two performers reading from paper on stage"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-42.jpg"
+                alt="Two performers reading from paper on stage"
+                width="2000"
+                height="1328"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="43"
+              aria-label="Open full-size photo: Dancers performing on a painted stage set"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-43.jpg"
+                alt="Dancers performing on a painted stage set"
+                width="2000"
+                height="1331"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape"
+              data-index="44"
+              aria-label="Open full-size photo: Archival photo of an earlier stage performance"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-44.jpg"
+                alt="Archival photo of an earlier stage performance"
+                width="2000"
+                height="1250"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="45"
+              aria-label="Open full-size photo: Children in costume on a decorated stage"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-45.jpg"
+                alt="Children in costume on a decorated stage"
+                width="2000"
+                height="1497"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="46"
+              aria-label="Open full-size photo: Group of women posed in red and white sarees"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-46.jpg"
+                alt="Group of women posed in red and white sarees"
+                width="2000"
+                height="1495"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="47"
+              aria-label="Open full-size photo: Large group photo at an outdoor picnic"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-47.jpg"
+                alt="Large group photo at an outdoor picnic"
+                width="2000"
+                height="1335"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card gallery-card--landscape"
+              data-index="48"
+              aria-label="Open full-size photo: Performers in costume on a dimly lit stage"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-48.jpg"
+                alt="Performers in costume on a dimly lit stage"
+                width="2000"
+                height="1092"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+            <button
+              type="button"
+              class="gallery-card"
+              data-index="49"
+              aria-label="Open full-size photo: Two performers dancing on a dark stage"
+            >
+              <img
+                class="gallery-card-image"
+                src="images/gallery/gallery-49.jpg"
+                alt="Two performers dancing on a dark stage"
+                width="2000"
+                height="1798"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= LIGHTBOX ================= -->
+    <div
+      class="gallery-modal"
+      id="gallery-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Enlarged gallery photo"
+      hidden
+    >
+      <div class="gallery-modal-backdrop" data-modal-dismiss></div>
+      <button
+        type="button"
+        class="gallery-modal-close"
+        data-modal-dismiss
+        aria-label="Close photo"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <figure class="gallery-modal-figure">
+        <img
+          class="gallery-modal-image"
+          id="gallery-modal-image"
+          src="images/gallery/featured/gallery-01.jpg"
+          alt=""
+        />
+      </figure>
+    </div>
+
+    <footer class="footer-v2">
+      <div class="section-container footer-v2-columns">
+        <img
+          class="footer-v2-backdrop"
+          src="images/homepage/footer/new-new-background-footer.png"
+          alt=""
+          aria-hidden="true"
+/>
+        <div class="footer-v2-brand">
+          <p class="footer-v2-brand-name">Suchona</p>
+          <ul class="footer-v2-social">
+            <li>
+              <a href="https://www.facebook.com/suchona.iowacity" aria-label="Suchona on Facebook" target="_blank" rel="noopener">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <path
+                    d="M13.5 21v-7h2.3l.35-2.7h-2.65V9.6c0-.78.22-1.32 1.34-1.32h1.44V5.9c-.25-.03-1.1-.1-2.1-.1-2.08 0-3.5 1.27-3.5 3.6v2h-2.35v2.7h2.35V21"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:suchonagovbody@gmail.com" aria-label="Email Suchona">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <rect x="6.5" y="7.5" width="11" height="9" rx="1.5" />
+                  <path d="m7 8.5 5 4 5-4" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <nav class="footer-v2-group footer-v2-col-explore" aria-label="Explore">
+          <p class="footer-v2-group-title">Explore</p>
+          <ul>
+            <li><a href="index-v2.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="magazine.html">Magazine</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-about" aria-label="About Us">
+          <p class="footer-v2-group-title">About Us</p>
+          <ul>
             <li><a href="our-story.html">Our Story</a></li>
             <li><a href="who-we-are.html">Who We Are</a></li>
           </ul>
-        </li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="magazine.html">Magazine</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html" class="btn-donate">Donate</a></li>
-      </ul>
-    </nav>
-  </header>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-events" aria-label="Events">
+          <p class="footer-v2-group-title">Events</p>
+          <ul>
+            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+            <li><a href="events.html">All Events</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-connect" aria-label="Connect">
+          <p class="footer-v2-group-title">Connect</p>
+          <ul>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html">Donate</a></li>
+          </ul>
+        </nav>
+        <div class="footer-v2-newsletter-col">
+          <p class="footer-v2-newsletter-title">Email Newsletter</p>
+          <form
+            class="footer-v2-newsletter"
+            data-footer-newsletter-form
+            novalidate
+          >
+            <label class="sr-only" for="footer-newsletter-email"
+              >Email address</label
+            >
+            <input
+              type="email"
+              id="footer-newsletter-email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+            <button type="submit" class="button-v2">Subscribe</button>
+          </form>
+          <p
+            class="footer-v2-newsletter-status"
+            data-footer-newsletter-status
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
+      </div>
+      <div class="footer-v2-base">
+        <p class="footer-v2-copyright">
+          &copy; 2026 Suchona. All rights reserved.
+        </p>
+      </div>
+    </footer>
 
-  <main>
-    <h1>Gallery</h1>
-  </main>
-
-  <footer>
-    <section class="social-links">
-      <!-- Social links placeholder -->
-    </section>
-    <section class="newsletter-signup">
-      <form>
-        <!-- Newsletter signup form placeholder -->
-      </form>
-    </section>
-    <section class="sponsors-thanks">
-      <!-- Sponsors thank-you placeholder -->
-    </section>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/site-v2.js"></script>
+    <script src="js/page-reveal.js"></script>
+    <script src="js/gallery.js"></script>
+  </body>
 </html>

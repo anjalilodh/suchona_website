@@ -1,0 +1,315 @@
+/* ==========================================================================
+   Magazine — page-specific styles (v2 track)
+   Shared between magazine.html and magazine-issue.html. Loaded after
+   css/style-v2.css. Reuses shared tokens/primitives from that file (see
+   DESIGN-v2.md); nothing here invents a new color or font.
+   ========================================================================== */
+
+.magazine-hero {
+  padding-top: calc(var(--nav-h) + clamp(2rem, 5vw, 3.5rem));
+}
+
+.magazine-hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.magazine-hero-intro {
+  max-width: 34rem;
+}
+
+.magazine-hero-intro .section-heading,
+.magazine-hero-intro .body-copy {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.magazine-hero-intro .body-copy {
+  text-align: center;
+}
+
+.magazine-eyebrow {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--v2-terracotta);
+}
+
+.magazine-back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--v2-forest);
+  text-decoration: none;
+}
+
+.magazine-back-link:hover,
+.magazine-back-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* ---- Flipbook ---- */
+
+.flipbook {
+  width: 100%;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.flipbook-pages {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  perspective: 2200px;
+}
+
+.flipbook-page {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.7s var(--ease-out);
+  box-shadow: 2px 6px 20px -8px rgba(26, 22, 15, 0.4);
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+}
+
+.flipbook-page-frame {
+  width: 100%;
+  height: 100%;
+  /* Pages stack directly on top of each other; placeholder-frame's default
+     background is a near-transparent tint (fine for small TBD boxes) but
+     needs to be opaque here so the page beneath doesn't show through. */
+  background: var(--v2-sand);
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+}
+
+.flipbook-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.flipbook-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--v2-ink);
+  background: var(--v2-cream);
+  color: var(--v2-ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s var(--ease-out),
+    color 0.2s var(--ease-out);
+}
+
+.flipbook-btn:hover:not(:disabled),
+.flipbook-btn:focus-visible {
+  background: var(--v2-ink);
+  color: var(--v2-sand);
+}
+
+.flipbook-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.flipbook-page-indicator {
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--v2-forest);
+  min-width: 6.5rem;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Magazine showcase — magazine.html only. An editorial stage for the
+   embedded flipbook: soft warm-glow background (no hard section edge),
+   restrained gold linework in the corners, generous vertical space. Keeps
+   the shared .magazine-hero/.magazine-eyebrow/.flipbook rules above intact
+   for magazine-issue.html — nothing here touches those selectors.
+   ========================================================================== */
+
+.magazine-showcase {
+  position: relative;
+  overflow: clip;
+  padding-top: calc(var(--nav-h) + clamp(3rem, 7vw, 5rem));
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+  /* Soft warm glow centered behind the magazine rather than a flat block —
+     reads as a gentle transition out of the cream page background instead
+     of a hard-edged colored section. */
+  background: radial-gradient(
+    ellipse 70% 65% at 50% 62%,
+    var(--v2-sand) 0%,
+    var(--v2-cream) 72%
+  );
+}
+
+.magazine-showcase-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.magazine-showcase-intro {
+  width: 100%;
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+
+.magazine-showcase-intro.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.magazine-showcase-title {
+  margin: 0;
+  font-family: var(--font-section-heading);
+  font-weight: 900;
+  font-size: clamp(2rem, 8.5vw, 4.75rem);
+  line-height: 1.02;
+  letter-spacing: 0.005em;
+  color: var(--v2-ink);
+  white-space: nowrap;
+}
+
+.magazine-divider {
+  margin: clamp(1.75rem, 3vw, 2.25rem) auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  width: min(100%, 16rem);
+}
+
+.magazine-divider-line {
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--v2-gold) 40%,
+    var(--v2-gold) 60%,
+    transparent
+  );
+}
+
+.magazine-divider-motif {
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.magazine-cta {
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--v2-forest);
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.7s var(--ease-out) 0.1s,
+    transform 0.7s var(--ease-out) 0.1s;
+}
+
+.magazine-cta.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Decorative ornaments — around the magazine, never over it ---- */
+
+.magazine-ornament {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+
+.magazine-ornament-paisley-right {
+  bottom: 6%;
+  right: clamp(-2.5rem, -2vw, 0.5rem);
+  width: clamp(5.5rem, 8vw, 8rem);
+  height: auto;
+  opacity: 0.55;
+  transform: rotate(8deg);
+}
+
+.magazine-ornament-dots {
+  top: 46%;
+  left: clamp(0.5rem, 3vw, 3rem);
+  width: clamp(6rem, 9vw, 9rem);
+  height: auto;
+  opacity: 0.7;
+}
+
+/* ---- Embedded issue viewer (fliphtml5 flipbook) ---- */
+
+.magazine-embed {
+  width: 100%;
+  max-width: min(94vw, 78rem);
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+}
+
+.magazine-embed.is-visible .magazine-embed-frame {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.magazine-embed-frame {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  /* Warm shadow instead of a border/background box — the iframe reads as a
+     physical object resting on the page rather than content in a chrome
+     container. */
+  box-shadow: 0 44px 90px -36px rgba(107, 36, 16, 0.4);
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+
+@media (max-width: 900px) {
+  .magazine-ornament-paisley-right {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 640px) {
+  .magazine-ornament-dots {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .flipbook {
+    max-width: 18rem;
+  }
+}

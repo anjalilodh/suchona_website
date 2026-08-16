@@ -25,13 +25,15 @@
 }
 
 :root {
-  --hero-red: #922b19;
-  --hero-red-dark: #7b2617;
-  --hero-gold: #d89437;
-  --hero-cream: #f2d9ad;
-  --hero-cream-light: #f8e4ba;
+  /* Aliased to the canonical palette in hero-base.css so the hero can never
+     drift from the rest of the site again — see DESIGN.md. */
+  --hero-red: var(--color-maroon);
+  --hero-red-dark: var(--color-maroon-dark);
+  --hero-gold: var(--color-gold);
+  --hero-cream: var(--color-parchment);
+  --hero-cream-light: var(--color-parchment-light);
   --hero-sky: #fae2b7;
-  --hero-forest: #2e4f3b;
+  --hero-forest: var(--color-forest);
   --hero-font: 'Anton', 'Arial Narrow', sans-serif;
   --hero-ui-font: 'Montserrat', Arial, sans-serif;
 }
@@ -305,7 +307,17 @@ body {
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  /* Locking to the artwork's own ratio (not min-height:100svh) is the fix for
+     the ghosting bug: hero-artwork-final.png has its nav/headline baked into
+     the pixels, and the real HTML copy + sky masks are positioned by percent
+     to sit exactly over those baked regions. object-fit:cover only maps 1:1
+     with those percentages when the container's ratio equals the image's
+     ratio — at any other ratio (which min-height:100svh produced on almost
+     every real window shape) cover-cropping shifts the image under the
+     overlay, so the masks miss and the baked text/headline show through
+     doubled. Matching the ratio here means cover never needs to crop, so the
+     overlay is always pixel-aligned with what's underneath it. */
+  aspect-ratio: 1672 / 941;
   padding: 0;
   overflow: hidden;
   background: var(--hero-cream);
@@ -471,10 +483,6 @@ body {
   transform: rotate(45deg);
 }
 
-footer {
-  display: none;
-}
-
 @media (max-width: 1500px) and (min-width: 941px) {
   .site-header {
     padding-inline: 3.5rem;
@@ -499,6 +507,14 @@ footer {
 }
 
 @media (max-width: 1120px) {
+  .hero {
+    /* Below this breakpoint the masks/overlay approach is off entirely
+       (see .hero-stage rules further down) and hero-inner drives its own
+       min-height:100svh in normal flow, so the aspect-ratio lock above
+       would only fight that — let content size the section instead. */
+    aspect-ratio: auto;
+  }
+
   .site-header {
     height: var(--nav-h);
     padding: 0 var(--page-pad);

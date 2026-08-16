@@ -1,0 +1,321 @@
+/* ==========================================================================
+   Events — page-specific styles (v2 track)
+   Loaded after css/style-v2.css. Reuses shared tokens/primitives from that
+   file (see DESIGN-v2.md); nothing here invents a new color or font.
+   ========================================================================== */
+
+/* ---- Intro ---- */
+
+.events-intro {
+  padding-top: calc(var(--nav-h) + clamp(2rem, 5vw, 3.5rem));
+  padding-bottom: clamp(0.75rem, 2vw, 1.25rem);
+  text-align: center;
+}
+
+.events-intro .section-heading {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(2rem, 8.5vw, 4.75rem);
+  line-height: 1.02;
+}
+
+.events-intro .page-title-gold-border {
+  width: min(46vw, 24rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.events-intro .body-copy {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* ---- Event rows — alternating two-column pattern ---- */
+
+.events-list {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.event-row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5.5rem) var(--page-pad);
+  min-height: 66dvh;
+}
+
+.event-row::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 3% calc(-1 * var(--page-pad));
+  background-image: url('../images/homepage/about%20us/about-us-embellishments.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.event-row:nth-of-type(even)::before {
+  transform: scaleX(-1);
+}
+
+.event-row::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: -10rem;
+  width: clamp(22rem, 32vw, 31rem);
+  aspect-ratio: 1 / 1;
+  background-image: url('../images/events/ornaments/event-heading-flourish.png');
+  background-repeat: no-repeat;
+  background-position: 31% center;
+  background-size: auto 100%;
+  opacity: 0.065;
+  transform: translateY(-50%) scale(1.08);
+  pointer-events: none;
+}
+
+.event-row:nth-of-type(even)::after {
+  right: -10rem;
+  left: auto;
+  background-position: 69% center;
+}
+
+.event-row:first-child {
+  padding-top: clamp(2.25rem, calc(2vw + 1.25rem), 2.75rem);
+}
+
+.event-row:nth-of-type(even) {
+  flex-direction: row-reverse;
+}
+
+.event-divider {
+  display: block;
+  width: min(calc(100% - (2 * var(--page-pad))), var(--container-max));
+  height: clamp(3.5rem, 5vw, 4.75rem);
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.event-row-media {
+  /* Fixed size, no flex-grow: with event-row-info capped at max-width and
+     flex-grow:1 previously on this element, it absorbed all the row's
+     leftover space and ballooned to ~1100px wide. object-fit:cover always
+     crops to fill its box rather than stretching — the box itself was just
+     too big. */
+  flex: 0 0 38.5rem;
+  min-width: 0;
+  width: 38.5rem;
+  height: 28.875rem;
+  max-width: 100%;
+  align-self: flex-start;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Source photos are portrait crops of a centered subject (idol/hands) —
+   weight the crop toward the top so cropping down to this section's
+   landscape frame doesn't cut off the subject's head. */
+.event-row-media-portrait {
+  object-position: center 25%;
+}
+
+.event-row-info {
+  flex: 1 1 auto;
+  max-width: 34rem;
+}
+
+.event-row-title {
+  margin: 0 0 1rem;
+  font-family: var(--font-section-heading);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+  color: var(--v2-ink);
+  text-wrap: balance;
+}
+
+.event-row-info .body-copy {
+  max-width: none;
+}
+
+.event-row-details {
+  margin: 0.5rem 0 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.event-row-detail {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.event-row-detail dt {
+  flex: none;
+  width: 5rem;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v2-terracotta);
+  padding-top: 0.15rem;
+}
+
+.event-row-detail dd {
+  margin: 0;
+  color: var(--v2-ink);
+}
+
+/* ---- One-time editorial reveals ---- */
+
+.events-motion-ready .events-intro .section-heading,
+.events-motion-ready .events-intro .page-title-gold-border,
+.events-motion-ready .event-row-media,
+.events-motion-ready .event-row-info > *,
+.events-motion-ready .event-divider {
+  opacity: 0;
+}
+
+.events-motion-ready .events-intro .section-heading,
+.events-motion-ready .events-intro .page-title-gold-border,
+.events-motion-ready .event-row-info > * {
+  transform: translate3d(0, 1rem, 0);
+  transition:
+    opacity 450ms var(--ease-out),
+    transform 450ms var(--ease-out);
+}
+
+.events-motion-ready .events-intro.is-visible .section-heading,
+.events-motion-ready .events-intro.is-visible .page-title-gold-border,
+.events-motion-ready .event-row.is-visible .event-row-info > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.events-motion-ready .events-intro .page-title-gold-border {
+  transition-delay: 70ms;
+}
+
+.events-motion-ready .event-row-info > :nth-child(2) {
+  transition-delay: 60ms;
+}
+
+.events-motion-ready .event-row-info > :nth-child(3) {
+  transition-delay: 120ms;
+}
+
+.events-motion-ready .event-row-info > :nth-child(4) {
+  transition-delay: 180ms;
+}
+
+.events-motion-ready .event-row-info > :nth-child(5) {
+  transition-delay: 240ms;
+}
+
+.events-motion-ready .event-row-media {
+  clip-path: inset(0 100% 0 0);
+  transform: translate3d(-1rem, 0, 0) scale(1.015);
+  transition:
+    clip-path 650ms var(--ease-out),
+    opacity 450ms var(--ease-out),
+    transform 650ms var(--ease-out);
+}
+
+.events-motion-ready .event-row:nth-of-type(even) .event-row-media {
+  clip-path: inset(0 0 0 100%);
+  transform: translate3d(1rem, 0, 0) scale(1.015);
+}
+
+.events-motion-ready .event-row.is-visible .event-row-media {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.events-motion-ready .event-divider {
+  transform: scaleX(0.72);
+  transition:
+    opacity 550ms var(--ease-out),
+    transform 650ms var(--ease-out);
+}
+
+.events-motion-ready .event-divider.is-visible {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   Responsive — stack image-then-text, drop the alternating pattern
+   ========================================================================== */
+
+@media (max-width: 1080px) {
+  .event-row,
+  .event-row:nth-of-type(even) {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    gap: 1.75rem;
+    padding-block: clamp(2.5rem, 8vw, 3.5rem);
+  }
+
+  .event-row-media {
+    flex-basis: auto;
+    width: 100%;
+    height: min(66vw, 28.875rem);
+    align-self: stretch;
+    aspect-ratio: 4 / 3;
+  }
+
+  .event-row-info {
+    max-width: none;
+  }
+
+  .event-row::before {
+    inset-inline: calc(-1 * var(--page-pad));
+    background-size: 100% 100%;
+    opacity: 0.075;
+  }
+
+  .event-row::after {
+    left: -8rem;
+    width: 21rem;
+    opacity: 0.055;
+  }
+
+  .event-row:nth-of-type(even)::after {
+    right: -8rem;
+    left: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .events-motion-ready .events-intro .section-heading,
+  .events-motion-ready .events-intro .page-title-gold-border,
+  .events-motion-ready .event-row-media,
+  .events-motion-ready .event-row-info > *,
+  .events-motion-ready .event-divider {
+    clip-path: none;
+    transform: none;
+    transition: opacity 200ms linear;
+  }
+}

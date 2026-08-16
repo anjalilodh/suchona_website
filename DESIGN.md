@@ -43,12 +43,12 @@ warmth: it lifts the reds and greens without applying a flat yellow wash.
 ## Typography
 
 The hero name retains the locally hosted condensed display face
-`Anton-Regular.woff2`. Section headings use Georgia Bold, while navigation,
+`Anton-Regular.woff2`. Section headings use the locally hosted Playfair Display variable face, while navigation,
 body copy, labels, and buttons use the locally hosted Montserrat family.
 
 ```css
 --font-display: 'Anton', 'Arial Narrow', sans-serif;
---font-section: Georgia, 'Times New Roman', serif;
+--font-section: 'Playfair Display', Georgia, serif;
 --font-body: 'Montserrat', Arial, sans-serif;
 ```
 
@@ -58,11 +58,11 @@ body copy, labels, and buttons use the locally hosted Montserrat family.
 | Donate label        | Montserrat |    600 |               18px |   `0.09em` | `#F8E4BA`  |
 | Hero `SUCHONA`      | Anton      |    400 |              160px |  `0.005em` | `#922B19`  |
 | Association tagline | Montserrat |    500 |               15px |   `0.10em` | `#2E4F3B`  |
-| Section headings    | Georgia    |    700 |         responsive | `-0.025em` | contextual |
+| Section headings    | Playfair Display | 900 |         responsive | `0.005em` | contextual |
 | Body copy           | Montserrat |    500 |            17–21px |          0 | `#1F1A17`  |
 
 Navigation, association tagline, labels, and action buttons stay uppercase.
-Body prose remains sentence case. Section headings use Georgia Bold for a
+Body prose remains sentence case. Section headings use Playfair Display Black for a
 more editorial, community-oriented contrast.
 
 Homepage section headings use title case: `About Us` and `Upcoming Events`.
@@ -92,7 +92,7 @@ shows exactly one event card per state at every viewport size.
   gold rules. On wide screens, two explicitly dashed future-photo positions
   flank three centered statistics; the photos disappear on narrower layouts
   and the statistics stack into a single column on mobile.
-- The About section is an editorial split on light parchment: Georgia title,
+- The About section is an editorial split on light parchment: Playfair Display title,
   ornamental rule, Montserrat prose, and one action plaque beside a single
   gold-framed, dashed future-photo position. The columns stack on narrow
   screens without changing their reading order.
@@ -128,3 +128,21 @@ shows exactly one event card per state at every viewport size.
   homepage reference; they never compete with headings or content.
 - **Future photography:** any photographic position remains a clearly labeled
   dashed placeholder until approved community imagery is supplied.
+
+## Shared footer
+
+- Every page uses the single reusable component defined by `js/footer.js` and
+  `css/footer.css`, mounted into a semantic `[data-site-footer]` element.
+- The outer field and double border use the established deep forest green; the
+  inner panel remains warm parchment with restrained gold rules.
+- The footer wordmark is text-only in the locally hosted Bespoke Slab face. It
+  is followed by the uppercase Montserrat association name; there is no emblem
+  and no descriptive paragraph.
+- Footer navigation mirrors only existing site routes: Explore, Events, and
+  About Us. Do not add speculative Community or Resources pages.
+- Newsletter, social, email, and phone details remain structurally ready, but
+  their external integrations and destination URLs must be confirmed before
+  launch.
+- Left/right paisley art and the bottom architectural skyline are dimensioned
+  placeholder layers. Replace their CSS backgrounds when approved transparent
+  assets arrive; do not change the component markup or content grid.

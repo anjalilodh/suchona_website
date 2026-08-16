@@ -1,0 +1,260 @@
+/* ==========================================================================
+   Our Story — page-specific styles (v2 track)
+   A scroll-revealed vertical timeline: a central spine grows as the visitor
+   scrolls, and each milestone fades/rises into place. Loaded after
+   css/style-v2.css. Reuses shared tokens/primitives from that file (see
+   DESIGN-v2.md); nothing here invents a new color or font.
+   ========================================================================== */
+
+.our-story-intro {
+  padding-top: calc(var(--nav-h) + clamp(2rem, 5vw, 3.5rem));
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.our-story-intro .section-heading,
+.our-story-intro .body-copy {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.our-story-intro .section-heading {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 8.5vw, 4.75rem);
+  line-height: 1.02;
+}
+
+.our-story-intro .body-copy {
+  max-width: 38rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.our-story-timeline-section {
+  padding-top: clamp(2rem, 5vw, 3rem);
+}
+
+/* ---- Timeline scaffold ---- */
+
+/* Spine sits near the left edge of .timeline-list; the year column and the
+   marker dots both anchor to the same x-position (--timeline-spine-x) so
+   they line up regardless of breakpoint or flex-direction. Declared on
+   .timeline (the shared ancestor of both .timeline-spine and
+   .timeline-list) so the custom property is actually visible to
+   .timeline-spine — it's a sibling of .timeline-list, not a descendant,
+   so it can't see a value scoped only to .timeline-list. */
+.timeline {
+  position: relative;
+  --timeline-spine-x: 0.6rem;
+}
+
+.timeline-list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--timeline-spine-x);
+  width: 3px;
+  transform: translateX(-50%);
+  background: rgba(201, 134, 60, 0.3);
+}
+
+.timeline-spine-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--v2-terracotta);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.1s linear;
+}
+
+/* ---- Milestone item ----
+   One consistent row per milestone: a big year number sitting on the
+   spine (left), then its photo/heading/copy (right) — no alternating
+   sides, so every item reads the same way down the page. */
+
+/* Grid instead of flex: the year column and the photo need to be in the
+   same grid row (row 1) so the year can be vertically centered against the
+   photo specifically, not against the taller photo+heading+copy block as a
+   whole. .timeline-card is display:contents so its children (photo/
+   heading/copy) become direct grid items here, placeable in their own
+   rows independent of .timeline-year-col's row. */
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(8rem, 26vw, 18rem) 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: calc(clamp(1.5rem, 4vw, 3rem) + 200px);
+  row-gap: 0;
+  width: 100%;
+  margin-bottom: clamp(3rem, 7vw, 5.5rem);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-year-col {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  padding-left: 2.25rem;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 50%;
+  left: var(--timeline-spine-x);
+  transform: translate(-50%, -50%);
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: var(--v2-cream);
+  border: 2px solid var(--v2-terracotta);
+  transition:
+    transform 0.3s var(--ease-out),
+    background 0.3s var(--ease-out);
+}
+
+.timeline-item.is-visible .timeline-marker {
+  background: var(--v2-terracotta);
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+/* No margin-bottom here on purpose: a trailing margin would inflate row
+   1's auto-computed height beyond the photo's own box, which would throw
+   off .timeline-year-col's align-self:center (it centers against row 1's
+   full track height, so that track's height must equal the photo's own
+   height exactly). The photo-to-heading gap is handled by
+   .timeline-heading's margin-top instead, which only offsets row 2 and
+   never touches row 1's sizing. */
+.timeline-photo-wrap {
+  grid-column: 2;
+  grid-row: 1;
+  max-width: 30rem;
+}
+
+/* .timeline-card no longer generates its own box — its children
+   (.timeline-photo-wrap, .timeline-heading, .timeline-copy) are placed
+   directly as grid items of .timeline-item above/below. */
+.timeline-card {
+  display: contents;
+}
+
+.timeline-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Portrait source photos — bias the crop up so the subject (idol/face)
+   stays in frame instead of being centered into empty lower space. */
+.timeline-photo-portrait {
+  object-position: center 22%;
+}
+
+.timeline-year {
+  margin: 0 0 0 20px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.75rem, 8vw, 7rem);
+  line-height: 0.95;
+  color: var(--v2-terracotta);
+}
+
+.timeline-heading {
+  grid-column: 2;
+  grid-row: 2;
+  max-width: 30rem;
+  margin: 1rem 0 0.6rem;
+  font-family: var(--font-section-heading);
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.15;
+  color: var(--v2-ink);
+}
+
+.timeline-copy {
+  grid-column: 2;
+  grid-row: 3;
+  max-width: 30rem;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--v2-ink);
+  opacity: 0.85;
+}
+
+/* ---- Scroll reveal ----
+   Only applied once js/our-story.js confirms IntersectionObserver support
+   (it adds .js-reveal to .timeline); otherwise items stay visible by
+   default so content never depends on JS to be readable. */
+
+.js-reveal .timeline-item {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+
+.js-reveal .timeline-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Responsive — collapse to a single left-aligned column
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  /* Everything stacks into a single column: year, then photo, then
+     heading, then copy — the spine + marker positions don't need to
+     change, since the year column is still the flush-left first item. */
+  .timeline-item {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    column-gap: 0;
+    row-gap: 0;
+  }
+
+  .timeline-year-col {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-year {
+    margin-left: 0;
+    font-size: 2.25rem;
+  }
+
+  .timeline-photo-wrap {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: none;
+  }
+
+  .timeline-heading {
+    grid-column: 1;
+    grid-row: 3;
+    max-width: none;
+  }
+
+  .timeline-copy {
+    grid-column: 1;
+    grid-row: 4;
+    max-width: none;
+  }
+}

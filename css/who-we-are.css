@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Who We Are — page-specific styles (v2 track)
+   Loaded after css/style-v2.css. Reuses shared tokens/primitives from that
+   file (see DESIGN-v2.md); nothing here invents a new color or font.
+
+   Structure: full-bleed forest-green officer band (page heading + the three
+   named positions, visually set apart) -> cream governing-body grid (the
+   remaining members, plainer treatment, no heading of its own — "Suchona
+   Governing Body" names both groups together, they aren't two things).
+   The color band is what gives the page its second color instead of
+   reading as one flat cream page top to bottom.
+   ========================================================================== */
+
+/* ---- Officers band ---- */
+
+/* The transparent header initially sits over this page's forest field. Keep
+   its plaintext navigation cream there, then return to the shared forest
+   color once the header gains its cream scrolled background. */
+.site-header-v2:not(.is-solid) .nav-links-v2 > li:not(.nav-donate-v2) > a {
+  color: var(--v2-cream);
+}
+
+.site-header-v2:not(.is-solid) .nav-toggle-v2 span {
+  background: var(--v2-cream);
+}
+
+.who-we-are-officers {
+  position: relative;
+  overflow: clip;
+  background: var(--v2-forest);
+  color: var(--v2-cream);
+  padding-top: calc(var(--nav-h) + clamp(2.5rem, 5vw, 4rem));
+  padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.who-we-are-officers .section-heading {
+  color: var(--v2-cream);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(2rem, 8.5vw, 4.75rem);
+  line-height: 1.02;
+}
+
+.officer-row {
+  margin-top: calc(clamp(2.5rem, 5vw, 3.5rem) + 3.125rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 4vw, 3rem);
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.officer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.officer-photo-frame {
+  /* Explicit width + height (not aspect-ratio) — the child photo's
+     height:100% wasn't reliably resolving against an aspect-ratio-derived
+     height, leaving the frame taller than it was wide and turning the
+     circular crop into an oval. Matching literal lengths sidesteps that. */
+  width: clamp(8rem, 14vw, 10.5rem);
+  height: clamp(8rem, 14vw, 10.5rem);
+  border-radius: var(--radius-card);
+  padding: 0.4rem;
+  background: linear-gradient(
+    155deg,
+    var(--v2-gold) 0%,
+    var(--v2-sand) 45%,
+    var(--v2-gold) 100%
+  );
+  transition: transform 0.3s var(--ease-out);
+}
+
+.officer-card:hover .officer-photo-frame,
+.officer-card:focus-within .officer-photo-frame {
+  transform: translateY(-4px);
+}
+
+.officer-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--radius-card) - 0.15rem);
+  object-fit: cover;
+  object-position: center;
+  border: 3px solid var(--v2-forest);
+}
+
+.officer-role {
+  margin: 1.1rem 0 0.3rem;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--v2-gold);
+}
+
+.officer-name {
+  margin: 0;
+  font-family: var(--font-section-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: var(--v2-cream);
+}
+
+/* ---- Governing body grid ---- */
+
+.who-we-are-members {
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2.5vw, 2rem);
+  row-gap: clamp(2.5rem, 5vw, 4rem);
+  max-width: 68rem;
+  margin-inline: auto;
+}
+
+.member-card {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.member-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.member-card:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+.member-photo-frame {
+  width: clamp(8rem, 14vw, 10.5rem);
+  height: clamp(8rem, 14vw, 10.5rem);
+  border-radius: var(--radius-card);
+  padding: 0.4rem;
+  background: linear-gradient(
+    155deg,
+    var(--v2-gold) 0%,
+    var(--v2-sand) 45%,
+    var(--v2-gold) 100%
+  );
+  transition: transform 0.3s var(--ease-out);
+}
+
+.member-card:hover .member-photo-frame,
+.member-card:focus-within .member-photo-frame {
+  transform: translateY(-4px);
+}
+
+.member-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--radius-card) - 0.15rem);
+  object-fit: cover;
+  object-position: center;
+  border: 3px solid var(--v2-forest);
+}
+
+.member-name {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-section-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: var(--v2-ink);
+}
+
+.member-role {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v2-terracotta);
+}
+
+@media (max-width: 640px) {
+  .officer-row {
+    grid-template-columns: 1fr;
+    max-width: 16rem;
+  }
+
+  .member-grid {
+    grid-template-columns: 1fr;
+    max-width: 16rem;
+  }
+
+  .member-card,
+  .member-card:nth-child(4),
+  .member-card:nth-child(5) {
+    grid-column: 1;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .member-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 38rem;
+  }
+
+  .member-card,
+  .member-card:nth-child(4),
+  .member-card:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .member-card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .primary-nav-v2 .nav-links-v2 > li:not(.nav-donate-v2) > a {
+    color: var(--v2-forest);
+  }
+}

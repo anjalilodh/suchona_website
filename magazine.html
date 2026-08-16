@@ -1,56 +1,275 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Magazine | Suchona</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <a href="index.html" class="site-name">Suchona</a>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <span>Events</span>
-          <ul class="dropdown-menu">
-            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
-            <li><a href="events.html">Events</a></li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>Magazine | Suchona</title>
+    <meta
+      name="description"
+      content="Read the latest issue of Hoi Choi Magazine, Suchona's community magazine."
+    />
+    <link rel="stylesheet" href="css/style-v2.css" />
+    <link rel="stylesheet" href="css/magazine.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header-v2">
+      <div class="nav-inner-v2">
+        <button
+          class="nav-toggle-v2"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav-v2"
+        >
+          <span></span><span></span><span></span>
+          <span class="sr-only">Menu</span>
+        </button>
+
+        <nav class="primary-nav-v2" id="primary-nav-v2" aria-label="Primary">
+          <ul class="nav-links-v2">
+            <li><a href="index-v2.html">Home</a></li>
+            <li class="nav-dropdown-v2">
+              <a href="events.html" class="nav-dropdown-v2-trigger">
+                Events
+                <span class="nav-dropdown-v2-chevron" aria-hidden="true"></span>
+              </a>
+              <ul class="nav-dropdown-v2-menu">
+                <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+                <li><a href="events.html">All Events</a></li>
+              </ul>
+            </li>
+            <li class="nav-dropdown-v2">
+              <a href="our-story.html" class="nav-dropdown-v2-trigger">
+                About Us
+                <span class="nav-dropdown-v2-chevron" aria-hidden="true"></span>
+              </a>
+              <ul class="nav-dropdown-v2-menu">
+                <li><a href="our-story.html">Our Story</a></li>
+                <li><a href="who-we-are.html">Who We Are</a></li>
+              </ul>
+            </li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="magazine.html">Magazine</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="nav-donate-v2">
+              <a href="donate.html" aria-label="Donate">
+                <span class="nav-donate-v2-crop">
+                  <img
+                    src="images/homepage/hero/donate-button.png"
+                    alt="Donate"
+                    width="1536"
+                    height="1024"
+                  />
+                </span>
+              </a>
+            </li>
           </ul>
-        </li>
-        <li class="dropdown">
-          <span>About Us</span>
-          <ul class="dropdown-menu">
+        </nav>
+        <div class="nav-scrim-v2"></div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ================= MAGAZINE ================= -->
+      <section
+        class="section magazine-showcase"
+        aria-labelledby="magazine-showcase-title"
+      >
+        <svg
+          class="magazine-ornament magazine-ornament-paisley-right"
+          data-parallax="-0.05"
+          viewBox="0 0 140 200"
+          aria-hidden="true"
+        >
+          <path
+            d="M110 20c22 18 26 48 10 72-12 18-34 24-40 44-5 17 4 34 20 40-24 4-46-10-52-32-6-23 8-38 22-54 14-16 22-32 12-52-6-12-18-19-32-19 18-10 42-13 60 1Z"
+            fill="none"
+            stroke="var(--v2-gold)"
+            stroke-width="1.1"
+            opacity="0.55"
+          />
+          <circle cx="97" cy="61" r="2.4" fill="var(--v2-gold)" opacity="0.6" />
+        </svg>
+
+        <svg
+          class="magazine-ornament magazine-ornament-dots"
+          data-parallax="0.02"
+          viewBox="0 0 220 40"
+          aria-hidden="true"
+        >
+          <g fill="var(--v2-terracotta)" opacity="0.35">
+            <circle cx="4" cy="20" r="2" />
+            <circle cx="24" cy="12" r="1.4" />
+            <circle cx="44" cy="26" r="1.7" />
+            <circle cx="66" cy="8" r="1.3" />
+            <circle cx="90" cy="22" r="2" />
+            <circle cx="116" cy="14" r="1.5" />
+            <circle cx="140" cy="24" r="1.8" />
+            <circle cx="166" cy="10" r="1.3" />
+            <circle cx="190" cy="20" r="2" />
+          </g>
+        </svg>
+
+        <div class="section-container magazine-showcase-container">
+          <div class="magazine-showcase-intro" data-fade-in>
+            <h1 id="magazine-showcase-title" class="magazine-showcase-title">
+              Hoi Choi Magazine
+            </h1>
+            <img class="page-title-gold-border" src="images/page-title-gold-border.png" alt="" aria-hidden="true" />
+          </div>
+
+          <p class="magazine-cta" data-fade-in>
+            Read the latest issue and flip through below.
+          </p>
+
+          <div class="magazine-embed" data-reveal>
+            <div class="magazine-embed-frame">
+              <div
+                style="
+                  position: relative;
+                  padding-top: max(60%, 324px);
+                  width: 100%;
+                  height: 0;
+                "
+              >
+                <iframe
+                  style="
+                    position: absolute;
+                    border: none;
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                  "
+                  src="https://online.fliphtml5.com/bcnbf/FINAL-UPDATE-SUCHONA-Mag/"
+                  title="FINAL UPDATE SUCHONA Mag"
+                  seamless="seamless"
+                  scrolling="no"
+                  frameborder="0"
+                  allowtransparency="true"
+                  allowfullscreen="true"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer-v2">
+      <div class="section-container footer-v2-columns">
+        <img
+          class="footer-v2-backdrop"
+          src="images/homepage/footer/new-new-background-footer.png"
+          alt=""
+          aria-hidden="true"
+/>
+        <div class="footer-v2-brand">
+          <p class="footer-v2-brand-name">Suchona</p>
+          <ul class="footer-v2-social">
+            <li>
+              <a href="https://www.facebook.com/suchona.iowacity" aria-label="Suchona on Facebook" target="_blank" rel="noopener">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <path
+                    d="M13.5 21v-7h2.3l.35-2.7h-2.65V9.6c0-.78.22-1.32 1.34-1.32h1.44V5.9c-.25-.03-1.1-.1-2.1-.1-2.08 0-3.5 1.27-3.5 3.6v2h-2.35v2.7h2.35V21"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:suchonagovbody@gmail.com" aria-label="Email Suchona">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <rect x="6.5" y="7.5" width="11" height="9" rx="1.5" />
+                  <path d="m7 8.5 5 4 5-4" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <nav class="footer-v2-group footer-v2-col-explore" aria-label="Explore">
+          <p class="footer-v2-group-title">Explore</p>
+          <ul>
+            <li><a href="index-v2.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="magazine.html">Magazine</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-about" aria-label="About Us">
+          <p class="footer-v2-group-title">About Us</p>
+          <ul>
             <li><a href="our-story.html">Our Story</a></li>
             <li><a href="who-we-are.html">Who We Are</a></li>
           </ul>
-        </li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="magazine.html">Magazine</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html" class="btn-donate">Donate</a></li>
-      </ul>
-    </nav>
-  </header>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-events" aria-label="Events">
+          <p class="footer-v2-group-title">Events</p>
+          <ul>
+            <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+            <li><a href="events.html">All Events</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-v2-group footer-v2-col-connect" aria-label="Connect">
+          <p class="footer-v2-group-title">Connect</p>
+          <ul>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html">Donate</a></li>
+          </ul>
+        </nav>
+        <div class="footer-v2-newsletter-col">
+          <p class="footer-v2-newsletter-title">Email Newsletter</p>
+          <form
+            class="footer-v2-newsletter"
+            data-footer-newsletter-form
+            novalidate
+          >
+            <label class="sr-only" for="footer-newsletter-email"
+              >Email address</label
+            >
+            <input
+              type="email"
+              id="footer-newsletter-email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+            <button type="submit" class="button-v2">Subscribe</button>
+          </form>
+          <p
+            class="footer-v2-newsletter-status"
+            data-footer-newsletter-status
+            role="status"
+            aria-live="polite"
+          ></p>
+        </div>
+      </div>
+      <div class="footer-v2-base">
+        <p class="footer-v2-copyright">
+          &copy; 2026 Suchona. All rights reserved.
+        </p>
+      </div>
+    </footer>
 
-  <main>
-    <h1>Magazine</h1>
-  </main>
-
-  <footer>
-    <section class="social-links">
-      <!-- Social links placeholder -->
-    </section>
-    <section class="newsletter-signup">
-      <form>
-        <!-- Newsletter signup form placeholder -->
-      </form>
-    </section>
-    <section class="sponsors-thanks">
-      <!-- Sponsors thank-you placeholder -->
-    </section>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/site-v2.js"></script>
+    <script src="js/magazine-showcase.js"></script>
+  </body>
 </html>

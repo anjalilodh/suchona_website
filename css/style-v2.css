@@ -1,0 +1,1617 @@
+/* ==========================================================================
+   Suchona v2 — homepage design system
+   Palette + illustration style sourced from DESIGN-v2.md (measured from
+   images/v2/v2-hero-artwork-final.png). This stylesheet is scoped to the v2
+   track only — it does not share tokens or components with the v1 pages.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Khand';
+  src: url('../fonts/Khand-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Khand';
+  src: url('../fonts/Khand-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/WorkSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('../fonts/PlayfairDisplay-Variable.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- palette (measured from hero artwork — see DESIGN-v2.md §1) ---- */
+  --v2-cream: #fbe1b8;
+  --v2-terracotta: #8b3018;
+  --v2-terracotta-dark: #6b2410;
+  --v2-forest: #3c4530;
+  --v2-forest-dark: #2c331f;
+  --v2-gold: #c9863c;
+  --v2-maroon: #6b2410;
+  --v2-coral: #e0794e;
+  --v2-ink: #1a160f;
+  --v2-sand: #f0c888;
+
+  /* muted, low-opacity tints for placeholder chrome — never full ornament */
+  --v2-placeholder-border: rgba(201, 134, 60, 0.55);
+  --v2-placeholder-bg: rgba(201, 134, 60, 0.08);
+  --v2-placeholder-text: var(--v2-terracotta-dark);
+  --v2-hairline: rgba(26, 22, 15, 0.12);
+
+  /* ---- type ---- */
+  --font-display: 'Khand', 'Arial Narrow', sans-serif;
+  --font-label: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-section-heading: 'Playfair Display', Georgia, serif;
+
+  /* ---- layout ---- */
+  --page-pad: clamp(1.25rem, 4vw, 3.5rem);
+  --container-max: 76rem;
+  --nav-h: 5rem;
+  --section-space: clamp(4rem, 9vw, 7.5rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-card: 0.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* gallery.html hover caption/scrim and lightbox open/close: swap
+     instantly instead of animating. Two-class selectors so they outrank
+     the base transition rules in css/gallery.css regardless of load order. */
+  .gallery-card .gallery-card-scrim,
+  .gallery-card .gallery-card-caption,
+  .gallery-modal .gallery-modal-backdrop,
+  .gallery-modal .gallery-modal-dialog {
+    transition: none;
+  }
+
+  /* magazine.html / magazine-issue.html flipbook: swap pages instantly
+     instead of animating the turn. Two-class selector so it outranks the
+     base transition rule in css/magazine.css regardless of load order. */
+  .flipbook .flipbook-page {
+    transition: none;
+  }
+
+  /* contact.html form-status messages: appear instantly instead of
+     fading/sliding in. Two-class selector so it outranks the base
+     transition rule in css/contact.css regardless of load order. */
+  .contact-form .form-status,
+  .newsletter-form ~ .form-status {
+    transition: none;
+  }
+
+  /* our-story.html timeline: milestones appear instantly instead of
+     fading/rising in, and the spine fill jumps instead of easing. Selectors
+     are one or two levels deeper than the base rules in css/our-story.css
+     so they win regardless of stylesheet load order. */
+  .timeline.js-reveal .timeline-item {
+    transition: none;
+  }
+
+  .timeline-item .timeline-marker {
+    transition: none;
+  }
+
+  .timeline-spine .timeline-spine-fill {
+    transition: none;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--v2-cream);
+  color: var(--v2-ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--v2-forest);
+  color: var(--v2-cream);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-label);
+  font-size: 0.9rem;
+  z-index: 100;
+  transition: top 0.2s var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--v2-terracotta);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--v2-gold);
+  color: var(--v2-cream);
+}
+
+.section-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+
+.section {
+  padding-block: var(--section-space);
+}
+
+.section-heading {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-section-heading);
+  font-weight: 900;
+  font-size: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  color: var(--v2-ink);
+  text-wrap: balance;
+}
+
+.page-title-gold-border {
+  display: block;
+  width: min(46vw, 24rem);
+  height: auto;
+  margin: clamp(0.55rem, 1.4vw, 0.9rem) auto 0;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Match the magazine page's true pre-paint fade state. Keeping this outside
+   the JS-ready gate prevents the heading from flashing fully visible first. */
+[data-page-fade] {
+  opacity: 0;
+  transform: translate3d(0, 0.75rem, 0);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+
+[data-page-fade].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.page-reveal-ready [data-page-fade],
+.page-reveal-ready [data-page-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 0.75rem, 0);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+}
+
+.page-reveal-ready [data-page-fade].is-visible,
+.page-reveal-ready [data-page-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-reveal-ready [data-page-fade],
+  .page-reveal-ready [data-page-reveal] {
+    transform: none;
+    transition: opacity 200ms linear;
+  }
+}
+
+.body-copy {
+  max-width: 42rem;
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  color: var(--v2-ink);
+}
+
+.body-copy:last-of-type {
+  margin-bottom: 1.75rem;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.button-v2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: 0.4rem;
+  background: var(--v2-terracotta);
+  color: var(--v2-cream);
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid var(--v2-terracotta);
+  cursor: pointer;
+  transition:
+    background 0.2s var(--ease-out),
+    color 0.2s var(--ease-out),
+    transform 0.15s var(--ease-out);
+}
+
+.button-v2:hover,
+.button-v2:focus-visible {
+  background: var(--v2-maroon);
+  border-color: var(--v2-maroon);
+}
+
+.button-v2:active {
+  transform: scale(0.98);
+}
+
+.button-v2-outline {
+  background: transparent;
+  color: var(--v2-terracotta);
+}
+
+.button-v2-outline:hover,
+.button-v2-outline:focus-visible {
+  background: var(--v2-terracotta);
+  color: var(--v2-cream);
+}
+
+/* ==========================================================================
+   Placeholder chrome — dashed boxes for assets not yet supplied.
+   Follows the v1 convention (DESIGN.md "dashed future-photo position"):
+   muted dashed border in a palette tone, small centered label naming the
+   exact asset the slot is waiting for.
+   ========================================================================== */
+
+.placeholder-frame {
+  display: grid;
+  place-items: center;
+  border: 1.5px dashed var(--v2-placeholder-border);
+  border-radius: var(--radius-card);
+  background: var(--v2-placeholder-bg);
+  color: var(--v2-placeholder-text);
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.placeholder-frame span {
+  padding: 1rem;
+}
+
+/* Horizontal ornamental divider strip — between major sections. Full-bleed
+   (edge to edge of the viewport, ignoring the page gutter) so the ribbon
+   reads as a continuous seam between About Us and Upcoming Events rather
+   than a contained element. background-size: cover (not width:100%/auto)
+   deliberately crops the source art's tall soft-glow fade down to just its
+   bright center band at this element's shallow height, instead of
+   stretching/squashing the artwork's own proportions. */
+.divider-strip {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  height: clamp(6rem, 6vw, 7rem);
+  overflow: hidden;
+  /* The source PNG's red field is intentionally translucent. An opaque
+     maroon backing prevents the pale neighboring sections from washing it
+     out while the uploaded artwork itself remains the foreground layer. */
+  background: var(--v2-terracotta-dark);
+  border: 0;
+}
+
+.divider-strip img {
+  position: absolute;
+  z-index: 1;
+  inset: 50% auto auto 50%;
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  border: 0;
+  object-fit: contain;
+}
+
+/* Subtle background texture tile — a barely-there repeating pattern meant
+   to sit behind whole sections (not a discrete box). Swap the asset by
+   setting --v2-texture-tile-url to a url(...) on the elements marked with
+   [data-asset-slot="background-texture-tile"]; it stays "none" until then. */
+[data-asset-slot='background-texture-tile'] {
+  --v2-texture-tile-url: none;
+  background-image: var(--v2-texture-tile-url);
+  background-repeat: repeat;
+}
+
+/* ==========================================================================
+   Header / navigation — overlaid transparently on the hero
+   ========================================================================== */
+
+.site-header-v2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  padding: 0 var(--page-pad);
+  transition:
+    transform 0.3s var(--ease-out),
+    background 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+}
+
+/* Past the hero, an unstyled header would sit transparently over whatever
+   section content is behind it — give it a readable backdrop there. */
+.site-header-v2.is-solid {
+  background: rgba(251, 225, 184, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 24px -8px rgba(26, 22, 15, 0.18);
+}
+
+/* Hidden while scrolling down past the hero; reappears on any upward
+   scroll (see js/site-v2.js) — a reveal-on-scroll-up header, not a
+   permanently sticky one. */
+.site-header-v2.is-hidden {
+  transform: translateY(-100%);
+}
+
+.nav-inner-v2 {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle-v2 {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 60;
+}
+
+.nav-toggle-v2 span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--v2-ink);
+  border-radius: 2px;
+  transition:
+    transform 0.3s var(--ease-out),
+    opacity 0.2s var(--ease-out);
+}
+
+.nav-toggle-v2[aria-expanded='true'] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle-v2[aria-expanded='true'] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle-v2[aria-expanded='true'] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-links-v2 {
+  display: flex;
+  align-items: center;
+  gap: clamp(2.25rem, 3.6vw, 3.75rem);
+}
+
+.nav-links-v2 a {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0.05rem;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--v2-forest);
+}
+
+/* Underline swipes in from the left on hover instead of the old
+   border-color cross-fade, which made the whole line appear at once. */
+.nav-links-v2 a::after {
+  content: '';
+  position: absolute;
+  left: 0.05rem;
+  right: 0.05rem;
+  bottom: 0;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.nav-links-v2 a:hover::after,
+.nav-links-v2 a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Events / About Us — hover-revealed submenus */
+.nav-dropdown-v2 {
+  position: relative;
+}
+
+.nav-dropdown-v2-trigger {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-dropdown-v2-chevron {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.nav-dropdown-v2:hover .nav-dropdown-v2-chevron,
+.nav-dropdown-v2:focus-within .nav-dropdown-v2-chevron {
+  transform: rotate(-135deg) translateY(2px);
+}
+
+.nav-dropdown-v2-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin: 0;
+  padding: 0.5rem;
+  min-width: 12rem;
+  list-style: none;
+  background: var(--v2-cream);
+  border: 1px solid rgba(26, 22, 15, 0.12);
+  border-radius: 0.5rem;
+  box-shadow: 0 18px 32px -12px rgba(26, 22, 15, 0.22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 6px);
+  transition:
+    opacity 0.2s var(--ease-out),
+    transform 0.2s var(--ease-out),
+    visibility 0.2s;
+  z-index: 30;
+}
+
+.nav-dropdown-v2:hover .nav-dropdown-v2-menu,
+.nav-dropdown-v2:focus-within .nav-dropdown-v2-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0.5rem);
+}
+
+.nav-dropdown-v2-menu a {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.35rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.nav-dropdown-v2-menu a::after {
+  content: none;
+}
+
+.nav-dropdown-v2-menu a:hover,
+.nav-dropdown-v2-menu a:focus-visible {
+  background: rgba(60, 69, 48, 0.08);
+}
+
+.nav-donate-v2 {
+  display: flex;
+  align-items: center;
+  /* No custom margin — sits in the flex row using the same gap as the
+     plaintext links, so it reads as part of the same nav group instead of
+     pinned to the far right. */
+  transform: translateY(-1px);
+}
+
+.nav-donate-v2 a {
+  display: block;
+  line-height: 0;
+  border-bottom: none;
+}
+
+.nav-donate-v2 a:hover,
+.nav-donate-v2 a:focus-visible {
+  border-color: transparent;
+}
+
+/* The badge already has its own hover pop (nav-donate-v2-crop scale); the
+   plaintext-link underline swipe from .nav-links-v2 a::after would be
+   redundant on top of that, so suppress it here. */
+.nav-donate-v2 a::after {
+  content: none;
+}
+
+/* The source badge is a small plaque adrift in a large soft glow — crop the
+   display box to just the plaque (measured bbox in the source PNG) and
+   scale it up so the "DONATE" lettering reads at the same size as the
+   plaintext nav links, instead of sizing the whole (mostly transparent)
+   image. */
+.nav-donate-v2-crop {
+  display: block;
+  overflow: hidden;
+  width: 9rem;
+  height: 2.36rem;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.nav-donate-v2 a:hover .nav-donate-v2-crop,
+.nav-donate-v2 a:focus-visible .nav-donate-v2-crop {
+  transform: scale(1.08);
+}
+
+.nav-donate-v2-crop img {
+  display: block;
+  width: 9.2rem;
+  max-width: none;
+  height: 6.136rem;
+  margin-top: -1.8rem;
+  margin-left: -0.096rem;
+}
+
+.nav-scrim-v2 {
+  display: none;
+}
+
+/* ==========================================================================
+   Hero — full bleed, single emotional high point of the page
+   ========================================================================== */
+
+.hero-v2 {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--v2-cream);
+  isolation: isolate;
+}
+
+.hero-v2-media,
+.hero-v2-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-v2-media {
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-v2-layer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  backface-visibility: hidden;
+  user-select: none;
+}
+
+.hero-v2-landscape-fallback {
+  z-index: 0;
+}
+
+.hero-v2-video {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.hero-v2.is-video-ready .hero-v2-video {
+  opacity: 1;
+}
+
+.hero-v2-halo {
+  z-index: 2;
+}
+
+.hero-v2-durga {
+  z-index: 3;
+}
+
+.hero-v2-paisley {
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hero-v2.is-parallax-active .hero-v2-landscape-fallback,
+.hero-v2.is-parallax-active .hero-v2-video,
+.hero-v2.is-parallax-active .hero-v2-halo,
+.hero-v2.is-parallax-active .hero-v2-durga {
+  will-change: transform;
+}
+
+.hero-v2.is-parallax-active .hero-v2-copy-lockup {
+  will-change: transform, opacity;
+}
+
+.hero-v2-copy {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  padding: calc(var(--nav-h) + 0.125rem) var(--page-pad) 0;
+  text-align: center;
+}
+
+.hero-v2-wordmark {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4.55rem, 2.6rem + 11.7vw, 11.7rem);
+  line-height: 0.95;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--v2-terracotta);
+  text-shadow:
+    0 0 0.6em rgba(251, 225, 184, 0.85),
+    0 0 1.5em rgba(251, 225, 184, 0.6);
+}
+
+.hero-v2-tagline {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: clamp(0.735rem, 0.294rem + 0.774vw, 1.039rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--v2-forest);
+  white-space: nowrap;
+  text-shadow:
+    0 0 0.5em rgba(251, 225, 184, 0.9),
+    0 0 1em rgba(251, 225, 184, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-v2-video {
+    display: none;
+    transition: none;
+  }
+
+  .hero-v2-landscape-fallback,
+  .hero-v2-video,
+  .hero-v2-halo,
+  .hero-v2-durga,
+  .hero-v2-paisley,
+  .hero-v2-copy-lockup {
+    transform: none !important;
+  }
+
+  .hero-v2-copy-lockup {
+    opacity: 1 !important;
+  }
+}
+
+/* Extra -15px on top of the shared -15px the whole copy block gets below,
+   so the tagline lands -30px total while the wordmark lands -15px. */
+@media (min-width: 560px) {
+  .hero-v2-tagline {
+    transform: translateY(-15px);
+  }
+}
+
+/* Above small-phone widths, the safe "sky" crop on the left of the hero
+   artwork is wide enough to hold the wordmark lockup without crossing into
+   the goddess figure — match the approved reference placement. The copy
+   block is sized to its content (max-content) and centered as a unit, so
+   the tagline centers directly under the wordmark and the two share the
+   same optical bounds. Below 560px, object-fit: cover leaves almost no
+   safe margin, so copy stays centered at the bottom edge instead. */
+@media (min-width: 560px) {
+  .hero-v2-copy {
+    position: absolute;
+    top: 37%;
+    left: 27%;
+    transform: translate(calc(-50% - 35px), calc(-50% - 15px));
+    width: max-content;
+    max-width: 90vw;
+    padding: 0;
+    text-align: center;
+  }
+
+  .hero-v2-wordmark {
+    font-size: clamp(3.575rem, 1.82rem + 7.8vw, 8.45rem);
+  }
+}
+
+/* ==========================================================================
+   Stats — small red banner between the hero and About
+   ========================================================================== */
+
+.stats-v2 {
+  /* The "-cropped" asset trims the source canvas down to just the patterned
+     strip (1536x266). background-size: contain fits by whichever dimension
+     is tighter — since this section is usually proportionally wider than
+     the strip itself (short padding-block vs. full page width), contain
+     ends up fitting to *height* and pillarboxing the pattern into a small
+     centered island with terracotta showing on both sides. Sizing to 100%
+     auto instead always fills the full width and scales height to match;
+     any leftover vertical space is just the terracotta fill, which already
+     matches the pattern's own background color. */
+  background: var(--v2-terracotta)
+    url('../images/homepage/stats/stats-new-background-cropped.png') center /
+    100% auto no-repeat;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.stats-v2 .section-container {
+  max-width: 92rem;
+}
+
+.stats-v2-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2.5rem, 7vw, 6rem);
+  text-align: center;
+}
+
+/* The strip itself remains flush against the hero/paisley edge. Only its
+   contents perform the slower, delayed upward arrival, so motion can never
+   expose a seam between the two sections. */
+.stats-v2-motion-ready .stats-v2-grid {
+  opacity: 0;
+  transform: translate3d(0, 1.75rem, 0);
+  transition:
+    opacity 850ms var(--ease-out) 180ms,
+    transform 950ms var(--ease-out) 180ms;
+}
+
+.stats-v2-motion-ready.is-visible .stats-v2-grid {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stats-v2-motion-ready .stats-v2-grid {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.stat-v2-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.stat-v2-icon {
+  width: clamp(6.5rem, 10.5vw, 9.2rem);
+  height: auto;
+  flex: none;
+}
+
+.stat-v2-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.stat-v2-value {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 1.6rem + 2vw, 3.25rem);
+  line-height: 1;
+  color: var(--v2-cream);
+}
+
+.stat-v2-label {
+  margin: 0;
+  max-width: 12rem;
+  font-family: var(--font-label);
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--v2-sand);
+}
+
+/* ==========================================================================
+   About / Our Story — alternating two-column storytelling
+   ========================================================================== */
+
+.about-v2 {
+  position: relative;
+  overflow: clip;
+  background: var(--v2-cream)
+    url('../images/homepage/about%20us/about-us-back-pic.png') center /
+    cover no-repeat;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(24rem, 0.95fr);
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2.5rem);
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+/* The background art already carries its own paisley corner flourishes
+   (left and right), so the section fits entirely within one viewport on
+   anything taller than a phone — no scrolling needed to read it. Left off
+   small screens (see responsive block) since there isn't enough vertical
+   room there without either cramming the copy or scrolling anyway, and
+   scrolling is the normal/expected mobile pattern. */
+@media (min-width: 641px) {
+  .about-v2 {
+    min-height: calc(100dvh - var(--nav-h));
+  }
+}
+
+.about-v2-content {
+  position: relative;
+  z-index: 1;
+  /* Wider than the old corner-paisley layout allowed (was capped at 38rem
+     to dodge that overlay) — the new full-bleed background has no corner
+     element to avoid, so the column can run wider, which wraps the copy to
+     fewer lines and helps the whole section fit one viewport tall. */
+  max-width: 46rem;
+  padding-left: calc(var(--page-pad) + 6.25rem);
+  padding-right: 0;
+}
+
+.about-v2-content .section-heading {
+  margin-bottom: 0.5rem;
+}
+
+.about-v2-content .body-copy {
+  max-width: none;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+}
+
+.about-v2-content .body-copy:last-of-type {
+  margin-bottom: 1.25rem;
+}
+
+.about-v2-embellishment {
+  position: relative;
+  top: -5px;
+  display: block;
+  width: 13.5rem;
+  height: 2.75rem;
+  margin: 0 0 0.85rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about-v2-image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(46vw, 50rem);
+  height: auto;
+  justify-self: end;
+  align-self: center;
+  margin-right: clamp(1rem, 3vw, 3.5rem);
+}
+
+/* ==========================================================================
+   Upcoming Events — horizontal scrollable card row
+   ========================================================================== */
+
+.events-v2 {
+  position: relative;
+  background: var(--v2-sand)
+    url('../images/homepage/upcoming%20events/upcoming-events-background.png')
+    center / cover no-repeat;
+}
+
+#events-v2-title {
+  text-align: center;
+  transform: translateY(-60px);
+}
+
+.events-v2-scroller-wrap {
+  position: relative;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transform: translateY(-50px);
+}
+
+.events-v2-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1rem 0.25rem 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--v2-terracotta) transparent;
+}
+
+.event-card-v2 {
+  position: relative;
+  flex: 0 0 clamp(15.5rem, 30vw, 19rem);
+  scroll-snap-align: start;
+  background: var(--v2-cream);
+  border: 1px solid rgba(201, 134, 60, 0.35);
+  border-radius: var(--radius-card);
+  overflow: visible;
+  box-shadow: 0 12px 28px -14px rgba(26, 22, 15, 0.28);
+}
+
+.event-photo-v2 {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  height: clamp(11.625rem, 22.5vw, 14.25rem);
+  display: block;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Source photos are portrait crops of a centered subject (idol/hands) —
+   weight the crop toward the top so cropping down to this card's landscape
+   frame doesn't cut off the subject's head. */
+.event-photo-v2-portrait {
+  object-position: center 25%;
+}
+
+.event-card-v2-body {
+  padding: 1.25rem 1.35rem 1.5rem;
+}
+
+.event-card-v2-date {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--v2-terracotta);
+}
+
+.event-card-v2-title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.1;
+  color: var(--v2-ink);
+}
+
+.event-card-v2-location {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--v2-forest);
+}
+
+.scroller-control {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--v2-ink);
+  background: var(--v2-cream);
+  color: var(--v2-ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -10px rgba(26, 22, 15, 0.35);
+  transition:
+    background 0.2s var(--ease-out),
+    color 0.2s var(--ease-out);
+}
+
+.scroller-control:hover,
+.scroller-control:focus-visible {
+  background: var(--v2-ink);
+  color: var(--v2-sand);
+}
+
+.events-v2-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  transform: translateY(-50px);
+}
+
+/* ==========================================================================
+   Sponsors — compact framed logo row
+   ========================================================================== */
+
+.sponsors-v2 {
+  padding-block: clamp(3.5rem, 6vw, 5.25rem);
+  background: var(--v2-terracotta-dark);
+  border-top: 1px solid rgba(251, 225, 184, 0.35);
+}
+
+.sponsors-v2-inner {
+  max-width: 70rem;
+}
+
+.sponsors-v2-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  text-align: center;
+  font-size: clamp(1.75rem, 1.42rem + 1.25vw, 2.5rem);
+  color: var(--v2-cream);
+}
+
+.sponsors-v2-title::before,
+.sponsors-v2-title::after {
+  content: '';
+  flex: 0 1 7rem;
+  height: 1px;
+  background: var(--v2-gold);
+}
+
+.sponsors-v2-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+.sponsor-v2-frame {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  place-items: center;
+  padding: clamp(0.55rem, 1vw, 0.85rem);
+  overflow: hidden;
+  background: var(--v2-cream);
+  border: 1.5px solid var(--v2-gold);
+  border-radius: 0.75rem;
+}
+
+.sponsor-v2-frame img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ==========================================================================
+   Footer — multi-column + large brand wordmark
+   ========================================================================== */
+
+.footer-v2 {
+  position: relative;
+  background: var(--v2-forest);
+  color: var(--v2-cream);
+  /* Taller than it looks like it needs to be: footer-v2-columns and
+     footer-v2-base both pull up 100px via transform, so this padding leaves
+     headroom above them so neither one's content is ever pushed above this
+     element's own top edge.
+     No overflow:clip here (deliberately removed) — it was clipping the
+     footer-v2-backdrop illustration, which needs to render at its full,
+     uncropped natural height. Nothing in this element depends on clipping:
+     the padding-top above already keeps the transformed children's painted
+     position from going negative at any supported viewport width. */
+  padding-top: clamp(7.5rem, 9vw, 9rem);
+}
+
+.footer-v2-backdrop {
+  /* Standalone image in the blank space under the brand column — shifted
+     50px right of the logo's left edge. Moved up twice now (50px, then a
+     further 30px), which runs it up into the "Magazine" link's own text —
+     intentional: z-index:2 (highest in this stacking context — no sibling
+     here sets one above auto) keeps this painted as its own top layer over
+     any nav text it now overlaps, rather than being clipped or pushed down
+     to avoid it. Source file is proper detailed line art with real
+     transparency (2.33:1 native ratio); width:auto/height:auto renders it
+     at that true ratio, nothing crops it. .footer-v2-columns (its
+     positioned ancestor) already carries the page gutter as padding, so
+     left:50px is exactly 50px past the wordmark.
+     Width is capped short of a literal 2x (which would work out to
+     ~1056px and run straight into the newsletter input) — 43.5rem is the
+     widest this can go at left:50px before it reaches the newsletter
+     column, so that's the ceiling here; .footer-v2-columns'
+     padding-bottom below leaves room so this box still clears the
+     copyright row without cropping.
+     Moved up a further 30px on top of the two prior moves (50px, then
+     30px) — top is now 110px above the base offset. z-index stays the
+     highest value in this stacking context so the illustration always
+     paints as the top layer over any nav text/columns it overlaps,
+     rather than being clipped or pushed down to avoid them. */
+  position: absolute;
+  top: calc(9rem - 110px);
+  left: 50px;
+  width: min(58%, 43.5rem);
+  height: auto;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.footer-v2-columns {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, 1fr);
+  grid-template-areas:
+    'brand explore about events connect'
+    'brand explore about newsletter newsletter';
+  column-gap: 2.5rem;
+  row-gap: 2rem;
+  /* Extra +10.5rem beyond the base clamp: room for .footer-v2-backdrop's
+     full natural height so it never overlaps the border-bottom/copyright
+     row below (added wrapper space, per spec, instead of shrinking or
+     cropping the image). */
+  padding-bottom: calc(clamp(2.5rem, 5vw, 4rem) + 10.5rem);
+  border-bottom: 1px solid rgba(251, 225, 184, 0.15);
+  transform: translateY(-100px);
+}
+
+.footer-v2-brand {
+  grid-area: brand;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.footer-v2-col-explore {
+  grid-area: explore;
+}
+
+.footer-v2-col-about {
+  grid-area: about;
+}
+
+.footer-v2-col-events {
+  grid-area: events;
+}
+
+.footer-v2-col-connect {
+  grid-area: connect;
+}
+
+.footer-v2-newsletter-col {
+  grid-area: newsletter;
+  align-self: start;
+}
+
+.footer-v2-brand-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 3.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.footer-v2-newsletter-title {
+  margin: 0 0 1rem;
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--v2-gold);
+}
+
+.footer-v2-newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.footer-v2-newsletter input {
+  flex: 1 1 12rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--v2-cream);
+  background: rgba(251, 225, 184, 0.08);
+  border: 1.5px solid rgba(251, 225, 184, 0.35);
+  border-radius: 0.4rem;
+  padding: 0.65rem 0.85rem;
+}
+
+.footer-v2-newsletter input::placeholder {
+  color: rgba(251, 225, 184, 0.55);
+}
+
+.footer-v2-newsletter input:focus-visible {
+  outline: 2px solid var(--v2-gold);
+  outline-offset: 2px;
+  border-color: var(--v2-gold);
+}
+
+.footer-v2-newsletter-status {
+  margin: -0.4rem 0 0;
+  min-height: 1.2rem;
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  color: var(--v2-sand);
+  opacity: 0;
+  transform: translateY(-0.25rem);
+  transition:
+    opacity 0.25s var(--ease-out),
+    transform 0.25s var(--ease-out);
+}
+
+.footer-v2-newsletter-status.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer-v2-social {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer-v2-social a {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(251, 225, 184, 0.4);
+  color: var(--v2-cream);
+  transition:
+    background 0.2s var(--ease-out),
+    color 0.2s var(--ease-out);
+}
+
+.footer-v2-social a:hover,
+.footer-v2-social a:focus-visible {
+  background: var(--v2-cream);
+  color: var(--v2-forest);
+}
+
+.footer-v2-social svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.footer-v2-group-title {
+  margin: 0 0 1rem;
+  font-family: var(--font-label);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--v2-gold);
+}
+
+.footer-v2-group ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-v2-group a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--v2-cream);
+  opacity: 0.85;
+  transition: opacity 0.2s var(--ease-out);
+}
+
+.footer-v2-group a:hover,
+.footer-v2-group a:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-v2-base {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin: 0 auto -150px;
+  padding: clamp(1.5rem, 4vw, 2.5rem) var(--page-pad) clamp(1.5rem, 4vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100px);
+}
+
+.footer-v2-copyright {
+  margin: 0;
+  font-family: var(--font-label);
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--v2-sand);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 1080px) {
+  .footer-v2-columns {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'brand brand'
+      'explore about'
+      'events connect'
+      'newsletter newsletter';
+  }
+
+  /* The backdrop is placed for the wide desktop layout (pinned under the
+     brand column, left of the newsletter column) — once the grid stacks,
+     that blank space no longer exists and the image would land on top of
+     other rows' text instead. */
+  .footer-v2-backdrop {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .sponsors-v2-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-v2 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-block: clamp(2.5rem, 7vw, 4rem);
+  }
+
+  .about-v2-content {
+    max-width: min(38rem, 88vw);
+    padding-inline: var(--page-pad);
+  }
+
+  .about-v2-image {
+    width: min(44rem, 92vw);
+    justify-self: center;
+    margin-right: 0;
+  }
+
+  .nav-toggle-v2 {
+    display: flex;
+  }
+
+  .primary-nav-v2 {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(20rem, 82vw);
+    height: 100vh;
+    height: 100dvh;
+    background: var(--v2-cream);
+    box-shadow: -24px 0 48px -24px rgba(26, 22, 15, 0.35);
+    transform: translateX(100%);
+    transition: transform 0.35s var(--ease-out);
+    z-index: 50;
+    padding: calc(var(--nav-h) + 1rem) 1.75rem 2rem;
+    overflow-y: auto;
+  }
+
+  .primary-nav-v2.is-open {
+    transform: translateX(0);
+  }
+
+  .nav-links-v2 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+    transform: none;
+  }
+
+  .nav-links-v2 a {
+    width: 100%;
+    padding: 0.7rem 0;
+    font-size: 0.95rem;
+  }
+
+  .nav-dropdown-v2 {
+    width: 100%;
+  }
+
+  .nav-dropdown-v2-chevron {
+    display: none;
+  }
+
+  .nav-dropdown-v2-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: none;
+    min-width: 0;
+    padding: 0 0 0.25rem 0.75rem;
+  }
+
+  .nav-dropdown-v2-menu a {
+    padding: 0.5rem 0;
+    font-size: 0.88rem;
+  }
+
+  .nav-donate-v2 {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .nav-inner-v2 {
+    justify-content: flex-end;
+  }
+
+  .nav-scrim-v2 {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 22, 15, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out);
+    z-index: 45;
+  }
+
+  .nav-scrim-v2.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+}
+
+@media (max-width: 560px) {
+  :root {
+    --nav-h: 4.25rem;
+  }
+
+  .hero-v2-copy {
+    position: absolute;
+    top: calc(var(--nav-h) + 0.5rem);
+    left: var(--page-pad);
+    width: min(12rem, calc(100vw - (2 * var(--page-pad))));
+    padding: 0;
+    text-align: left;
+  }
+
+  .hero-v2-wordmark {
+    font-size: clamp(3.25rem, 14vw, 3.65rem);
+  }
+
+  .hero-v2-tagline {
+    max-width: 12rem;
+    margin-top: 0.45rem;
+    font-size: 0.68rem;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .sponsors-v2-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sponsor-v2-frame:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 0.375rem);
+    justify-self: center;
+  }
+
+  .footer-v2-columns {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'brand'
+      'explore'
+      'about'
+      'events'
+      'connect'
+      'newsletter';
+  }
+
+  .footer-v2-base {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .divider-strip::before,
+  .divider-strip::after {
+    width: calc(50% - 5.5rem);
+  }
+}

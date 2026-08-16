@@ -5,31 +5,60 @@
    ========================================================================== */
 
 @font-face {
-  font-family: 'Fraunces';
-  src:
-    url('../fonts/Fraunces-Variable.woff2') format('woff2-variations'),
-    url('../fonts/Fraunces-Variable.woff2') format('woff2');
-  font-weight: 300 900;
+  font-family: 'General Sans';
+  src: url('../fonts/GeneralSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('../fonts/GeneralSans-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bespoke Slab';
+  src: url('../fonts/BespokeSlab-Bold.woff2') format('woff2');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  /* ---- palette (site-wide) ---- */
-  --cream: #f4ecdd;
-  --cream-deep: #ece0c9;
-  --forest: #1f3a2e;
-  --forest-ink: #16281f;
-  --oxblood: #7a2426;
-  --oxblood-deep: #5a1f22;
-  --mustard: #d9a441;
-  --mustard-soft: #e7c077;
-  --text-muted: #52604b;
+  /* ---- palette (site-wide, single source of truth — see DESIGN.md) ---- */
+  --color-maroon: #922b19;
+  --color-maroon-dark: #7b2617;
+  --color-maroon-deep: #681f15;
+  --color-gold: #d89437;
+  --color-gold-light: #efbe63;
+  --color-parchment: #f2d9ad;
+  --color-parchment-light: #f8e4ba;
+  --color-forest: #2e4f3b;
+  --color-forest-deep: #173d2e;
+  --color-ink: #1f1a17;
+
+  /* ---- legacy aliases ----
+     Older rules in this file (and any page still using them) were written
+     against these names before the palette above was confirmed. Pointing
+     them at the canonical tokens keeps every consumer in sync instead of
+     maintaining two slightly-different reds/creams/greens. */
+  --cream: var(--color-parchment);
+  --cream-deep: var(--color-parchment-light);
+  --forest: var(--color-forest);
+  --forest-ink: var(--color-ink);
+  --oxblood: var(--color-maroon);
+  --oxblood-deep: var(--color-maroon-dark);
+  --mustard: var(--color-gold);
+  --mustard-soft: var(--color-gold-light);
+  --text-muted: #5c6b57;
 
   /* ---- type ---- */
-  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-  --font-sans:
-    'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Bespoke Slab', Georgia, serif;
+  --font-sans: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* ---- layout ---- */
   --page-pad: clamp(1.25rem, 4vw, 3.5rem);
