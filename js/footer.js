@@ -58,7 +58,7 @@
             <section>
               <h2 class="site-footer__heading">Events</h2>
               <ul class="site-footer__links">
-                <li><a href="durga-puja-2026.html">Durga Puja 2026</a></li>
+                <li><a href="durga-puja-2026.html">Durga Puja 2025</a></li>
                 <li><a href="events.html">All Events</a></li>
               </ul>
             </section>
